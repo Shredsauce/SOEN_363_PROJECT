@@ -1,10 +1,12 @@
 import mysql.connector
 from mysql.connector import Error
 import configparser
+import requests
 
 config_path = 'config.ini'
 db_name = 'soen_project_phase_1'
-
+igdb_client_id = '0yr0r2fbldsuya8awjkp3r3kxe3znk'
+igdb_bearer = 'Bearer b9hp4t4dbg9ajpzl6ne9qj90ovsmlc'
 
 def main():
     config = configparser.ConfigParser()
@@ -71,15 +73,29 @@ def create_tables(connection):
 def populate_database(connection):
     cursor = connection.cursor()
 
-    dml_sql_query = """
-    INSERT INTO game (name, igdb_key) VALUES ('some name', 'some_ig_somekey');
-    """
+    url = "https://api.igdb.com/v4/games/"
+    headers = {
+        'Client-ID': igdb_client_id,
+        'Authorization': igdb_bearer,
+    }
 
-    for result in cursor.execute(dml_sql_query, multi=True):
-        if result.with_rows:
-            print(result.fetchall())
+    response = requests.post(url, headers=headers, data='fields name; limit 10;')
 
-    connection.commit()
+    cursor.execute(f"USE {db_name};")
+
+    if response.status_code == 200:
+        games = response.json()
+        for game in games:
+            insert_query = "INSERT INTO game (name, igdb_key) VALUES (%s, %s);"
+            game_name = game.get('name', 'N/A')
+            game_id = game['id']
+            cursor.execute(insert_query, (game_name, game_id))
+
+            print(f"Inserted: {game_name}")
+
+        connection.commit()
+    else:
+        print(f"Error: {response.status_code}")
 
 
 def create_connection(db_config):
