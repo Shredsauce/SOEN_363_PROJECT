@@ -1,24 +1,28 @@
 import mysql.connector
 from mysql.connector import Error
+import configparser
 
-initial_config_dict = {
-    'user': 'root',
-    'password': 'Test123',
-    'host': '127.0.0.1',
-    'raise_on_warnings': True
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+db_config = {
+    'user': config.get('database', 'user'),
+    'password': config.get('database', 'password'),
+    'host': config.get('database', 'host'),
+    'raise_on_warnings': config.getboolean('database', 'raise_on_warnings')
 }
 
 db_name = 'soen_project_phase_1'
 
 try:
-    connection = mysql.connector.connect(**initial_config_dict)
+    connection = mysql.connector.connect(**db_config)
     cursor = connection.cursor()
     cursor.execute(f"DROP DATABASE IF EXISTS {db_name};")
     cursor.execute(f"CREATE DATABASE {db_name};")
     cursor.close()
     connection.close()
 
-    connection_config_dict = initial_config_dict.copy()
+    connection_config_dict = db_config.copy()
     connection_config_dict['database'] = db_name
     connection = mysql.connector.connect(**connection_config_dict)
     cursor = connection.cursor()
