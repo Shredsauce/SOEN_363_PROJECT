@@ -63,34 +63,107 @@ Right join person_job PJ ON P.person_id=PJ.person_id
 Right join job J on PJ.job_id=J.job_id);
 
 -- Correlated Query 1. Find the game name that was the most recently released.
-Select G.name, G.release_date
-From game G
-Where G.release_date= (Select max(G1.release_date)
+Select G1.name, G1.release_date
 From game G1
-Where G.game_id=G1.game_id);
+Where G1.release_date = (
+Select MAX(G2.release_date)
+From game G2
+);
 
--- Correlated Query 2. Find the game names that have a platform id less than 6.
+-- Correlated Query 2. Find the game id that have a platform id less than the average platform id.
+Select GP.game_id, GP.platform_id
+From game_platform GP
+Where GP.platform_id < (
+Select AVG(GP2.platform_id)
+From game_platform GP2
+);
 
--- Correlated Query 3
+-- Correlated Query 3. Find the number of platforms each game runs on.
+Select G.name,
+(Select count(*)
+From game_platform GP
+Where GP.game_id=G.game_id) as number_of_platforms
+From game G;
 
 -- Intersect with SET
+(Select G.name
+From game G, game_platform GP, platform P
+Where G.game_id=GP.game_id and P.platform_id=GP.platform_id and P.name='Xbox One')
+intersect
+(Select G.name
+From game G, game_platform GP, platform P
+Where G.game_id=GP.game_id and P.platform_id=GP.platform_id and P.name='Xbox Series X|S');
 
--- Intersect without SET
+-- Intersect without set operation. List all the game names that run on Xbox One and on Xbox Series X|S
+Select G.name as xboxGames
+From game G, game_platform GP, platform P
+Where G.game_id=GP.game_id
+and GP.platform_id=P.platform_id
+and P.name = 'Xbox One'
+and G.name in (
+Select G.name
+From game G, game_platform GP, platform P
+Where G.game_id=GP.game_id
+and GP.platform_id=P.platform_id
+and P.name = 'Xbox Series X|S');
 
--- Union with SET
+-- Union with SET. List all the game names that run on Xbox One or on iOS
+(Select G.name
+From game G, game_platform GP, platform P
+Where G.game_id=GP.game_id and P.platform_id=GP.platform_id and P.name='Xbox One')
+union
+(Select G.name
+From game G, game_platform GP, platform P
+Where G.game_id=GP.game_id and P.platform_id=GP.platform_id and P.name='iOS');
 
--- Union without SET
+-- Union without SET. List all the game names that run on Xbox One or on iOS
+Select G.name as xboxOneOrIOS
+From game G, game_platform GP, platform P
+Where G.game_id=GP.game_id and P.platform_id=GP.platform_id and (P.name='Xbox One' or P.name='iOS');
 
--- Difference with SET
+-- Difference with SET. List all the game names that run on Xbox One but not on iOS.
+(Select G.name
+From game G, game_platform GP, platform P
+Where G.game_id=GP.game_id and P.platform_id=GP.platform_id and P.name='Xbox One')
+except
+(Select G.name
+From game G, game_platform GP, platform P
+Where G.game_id=GP.game_id and P.platform_id=GP.platform_id and P.name='iOS');
 
--- Difference without SET
+-- Difference without SET. List all the game names that run on Xbox One but not on iOS.
+Select G.name as xboxNotIOS
+From game G, game_platform GP, platform P
+Where G.game_id=GP.game_id
+and GP.platform_id=P.platform_id
+and P.name = 'Xbox One'
+and G.name NOT IN (
+Select G.name
+From game G, game_platform GP, platform P
+Where G.game_id=GP.game_id
+and GP.platform_id=P.platform_id
+and P.name = 'iOS');
 
 -- View with hardcoded? 
+Drop view if exists ios_platform;
+Create View ios_platform as
+(select * from platform where platform_id=1);
 
 -- Division using a regular nested query using NOT IN
 
 -- Division using a correlated nested query using NOT EXISTS and EXCEPT
 
--- Overlap
+-- Overlap. List the platforms that belong to more than one platform family.
+Select P.name as moreThanOnePlatformFamily
+From platform P, platform_family PF, platform_platform_family PPF
+Where P.platform_id=PPF.platform_id
+and PF.platform_family_id=PPF.platform_family_id
+Group by moreThanOnePlatformFamily
+Having count(PF.platform_family_id) > 1;
 
--- Covering Constraint
+-- Covering Constraint. List the platforms that don't belong to a platform family.
+Select P.name as noFamily
+From platform P
+Where NOT Exists(
+Select *
+From platform_platform_family PPF
+Where P.platform_id=PPF.platform_id);
