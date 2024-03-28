@@ -11,6 +11,14 @@ CREATE TABLE platform (
     name VARCHAR(255)
 );
 
+CREATE TABLE game_platform (
+    game_id INT,
+    platform_id INT,
+    PRIMARY KEY (game_id, platform_id),
+    FOREIGN KEY (game_id) REFERENCES game(game_id),
+    FOREIGN KEY (platform_id) REFERENCES platform(platform_id)
+);
+
 CREATE TABLE person (
     person_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
