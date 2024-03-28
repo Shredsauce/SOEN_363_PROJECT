@@ -1,0 +1,126 @@
+{
+    "PlayStation 5": {
+        "RAWG_ID": 187,
+        "IGDB_ID": 167
+    },
+    "Xbox One": {
+        "RAWG_ID": 1,
+        "IGDB_ID": 49
+    },
+    "PlayStation 4": {
+        "RAWG_ID": 18,
+        "IGDB_ID": 48
+    },
+    "Nintendo Switch": {
+        "RAWG_ID": 7,
+        "IGDB_ID": 130
+    },
+    "iOS": {
+        "RAWG_ID": 3,
+        "IGDB_ID": 39
+    },
+    "Android": {
+        "RAWG_ID": 21,
+        "IGDB_ID": 34
+    },
+    "Nintendo 3DS": {
+        "RAWG_ID": 8,
+        "IGDB_ID": 37
+    },
+    "Nintendo DS": {
+        "RAWG_ID": 9,
+        "IGDB_ID": 20
+    },
+    "Nintendo DSi": {
+        "RAWG_ID": 13,
+        "IGDB_ID": 159
+    },
+    "Linux": {
+        "RAWG_ID": 6,
+        "IGDB_ID": 3
+    },
+    "Xbox 360": {
+        "RAWG_ID": 14,
+        "IGDB_ID": 12
+    },
+    "Xbox": {
+        "RAWG_ID": 80,
+        "IGDB_ID": 11
+    },
+    "PlayStation 3": {
+        "RAWG_ID": 16,
+        "IGDB_ID": 9
+    },
+    "PlayStation 2": {
+        "RAWG_ID": 15,
+        "IGDB_ID": 8
+    },
+    "PlayStation": {
+        "RAWG_ID": 27,
+        "IGDB_ID": 7
+    },
+    "Wii U": {
+        "RAWG_ID": 10,
+        "IGDB_ID": 41
+    },
+    "Wii": {
+        "RAWG_ID": 11,
+        "IGDB_ID": 5
+    },
+    "Nintendo 64": {
+        "RAWG_ID": 83,
+        "IGDB_ID": 4
+    },
+    "Game Boy Advance": {
+        "RAWG_ID": 24,
+        "IGDB_ID": 24
+    },
+    "Game Boy Color": {
+        "RAWG_ID": 43,
+        "IGDB_ID": 22
+    },
+    "Game Boy": {
+        "RAWG_ID": 26,
+        "IGDB_ID": 33
+    },
+    "Apple II": {
+        "RAWG_ID": 41,
+        "IGDB_ID": 75
+    },
+    "Atari 7800": {
+        "RAWG_ID": 28,
+        "IGDB_ID": 60
+    },
+    "Atari 5200": {
+        "RAWG_ID": 31,
+        "IGDB_ID": 66
+    },
+    "Atari 2600": {
+        "RAWG_ID": 23,
+        "IGDB_ID": 59
+    },
+    "Atari 8-bit": {
+        "RAWG_ID": 25,
+        "IGDB_ID": 65
+    },
+    "Atari Lynx": {
+        "RAWG_ID": 46,
+        "IGDB_ID": 61
+    },
+    "SEGA Saturn": {
+        "RAWG_ID": 107,
+        "IGDB_ID": 32
+    },
+    "SEGA CD": {
+        "RAWG_ID": 119,
+        "IGDB_ID": 78
+    },
+    "SEGA 32X": {
+        "RAWG_ID": 117,
+        "IGDB_ID": 30
+    },
+    "Dreamcast": {
+        "RAWG_ID": 106,
+        "IGDB_ID": 23
+    }
+}
