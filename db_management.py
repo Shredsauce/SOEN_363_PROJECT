@@ -10,7 +10,7 @@ db_name = 'soen_project_phase_1'
 igdb_client_id = '0yr0r2fbldsuya8awjkp3r3kxe3znk'
 igdb_bearer = 'Bearer b9hp4t4dbg9ajpzl6ne9qj90ovsmlc'
 rawg_api_key = 'c1374952adee4d77a6519c7cc374e367'
-
+limit_num_games = 20
 
 def main():
     config = configparser.ConfigParser()
@@ -83,7 +83,7 @@ def insert_games(connection, cursor):
         'Authorization': igdb_bearer,
     }
 
-    response = requests.post(url, headers=headers, data='fields name, release_dates.date; limit 20;')
+    response = requests.post(url, headers=headers, data='fields name, release_dates.date, platforms, platforms.name, platforms.platform_family,  platforms.platform_family.name; limit '+str(limit_num_games)+';')
     if response.status_code == 200:
         games = response.json()
         for game in games:
@@ -106,14 +106,65 @@ def insert_games(connection, cursor):
             if rawg_id < 0: continue
 
             insert_query = "INSERT INTO game (name, igdb_id, rawg_id, release_date) VALUES (%s, %s, %s, %s);"
-
             cursor.execute(insert_query, (game_name, igdb_id, rawg_id, release_date))
+
+            # Keep track of our internal id to use when referencing in the platform_game relationship
+            game['internal_game_id'] = cursor.lastrowid
+            insert_platform_info(connection, game)
 
             print(f"Inserting: {game_name}")
 
         connection.commit()
     else:
         print(f"Error: {response.status_code}")
+
+
+def insert_platform_info(connection, game):
+    cursor = connection.cursor()
+
+    internal_game_id = game['internal_game_id']
+
+    igdb_platforms = game['platforms']
+
+    for igdb_platform in igdb_platforms:
+        internal_platform_id = -1
+        igdb_platform_id = igdb_platform['id']
+        platform_name = igdb_platform['name']
+        platform_family = igdb_platform.get('platform_family', None)
+
+        try:
+            insert_query = "INSERT IGNORE INTO platform (igdb_platform_id, name) VALUES (%s, %s);"
+            cursor.execute(insert_query, (igdb_platform_id, platform_name))
+            internal_platform_id = cursor.lastrowid
+        except mysql.connector.Error as err:
+            if err.errno == 1062:
+                select_query = "SELECT platform_id FROM platform WHERE igdb_platform_id = %s;"
+                cursor.execute(select_query, (igdb_platform_id,))
+                internal_platform_id = cursor.fetchone()[0]
+            else:
+                raise
+
+        if platform_family:
+            igdb_platform_family_id = igdb_platform['platform_family']['id']
+            platform_family_name = igdb_platform['platform_family']['name']
+
+            try:
+                insert_query = "INSERT IGNORE INTO platform_family (igdb_platform_family_id, name) VALUES (%s, %s);"
+                cursor.execute(insert_query, (igdb_platform_family_id, platform_family_name))
+                internal_platform_family_id = cursor.lastrowid
+
+                insert_query = "INSERT INTO platform_platform_family (platform_family_id, platform_id) VALUES (%s, %s);"
+                cursor.execute(insert_query, (internal_platform_family_id, internal_platform_id))
+            except mysql.connector.Error as err:
+                if err.errno == 1062:
+                    pass
+                else:
+                    raise
+
+        insert_query = "INSERT INTO game_platform (game_id, platform_id) VALUES (%s, %s);"
+        cursor.execute(insert_query, (internal_game_id, internal_platform_id))
+
+    connection.commit()
 
 
 def find_rawg_game_id(game_name, release_date):
