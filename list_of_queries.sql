@@ -148,9 +148,21 @@ Drop view if exists ios_platform;
 Create View ios_platform as
 (select * from platform where platform_id=1);
 
--- Division using a regular nested query using NOT IN
-
--- Division using a correlated nested query using NOT EXISTS and EXCEPT
+-- Division using a regular nested query using NOT IN (what game is on all platforms)
+SELECT * FROM game_platform
+Where game_id NOT IN (SELECT game_id FROM ( (SELECT game_id, platform_id FROM (select platform_id from platform) as P 
+CROSS JOIN
+     (SELECT distinct game_id FROM game_platform) as UniqueGames)
+EXCEPT
+(SELECT game_id, platform_id FROM game_platform))
+);
+-- Division using a correlated nested query using NOT EXISTS and EXCEPT (what game is on all platforms)
+SELECT * FROM game_platform AS gp
+WHERE NOT EXISTS (
+    (SELECT p.platform_id FROM platform AS p)
+    EXCEPT
+    (SELECT sp.platform_id FROM game_platform as sp WHERE sp.game_id = gp.game_id)
+);
 
 -- Overlap. List the platforms that belong to more than one platform family.
 Select P.name as moreThanOnePlatformFamily
