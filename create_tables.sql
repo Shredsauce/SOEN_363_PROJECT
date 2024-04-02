@@ -8,6 +8,20 @@ CREATE TABLE game (
     rawg_id INT
 );
 
+CREATE TABLE genre (
+    genre_id INT AUTO_INCREMENT PRIMARY KEY,
+    igdb_genre_id INT UNIQUE,
+    name VARCHAR(255)
+);
+
+CREATE TABLE game_genre (
+    game_genre_id INT AUTO_INCREMENT PRIMARY KEY,
+    game_id INT,
+    genre_id INT,
+    FOREIGN KEY (game_id) REFERENCES game(game_id),
+    FOREIGN KEY (genre_id) REFERENCES genre(genre_id)
+);
+
 CREATE TABLE platform (
     platform_id INT AUTO_INCREMENT PRIMARY KEY,
     platform_family_id INT,

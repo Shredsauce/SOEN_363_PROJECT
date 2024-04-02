@@ -9,9 +9,6 @@ config_path = 'config.ini'
 create_tables_file = 'create_tables.sql'
 db_name = 'soen_project_phase_1'
 
-limit_num_igdb_games = 500
-num_igdb_pages_to_process = 4
-
 settings = configparser.ConfigParser()
 settings.read('settings.ini')
 
@@ -77,11 +74,14 @@ def populate_database(connection):
     cursor = connection.cursor()
     cursor.execute(f"USE {db_name};")
 
-    insert_games(connection, cursor)
+    insert_igdb_games(connection, cursor)
 
 
-def insert_games(connection, cursor):
-    for i in range(0, num_igdb_pages_to_process):
+def insert_igdb_games(connection, cursor):
+    num_pages_to_process = int(settings.get('IGDB_SETTINGS', 'num_pages_to_process'))
+    limit_num_games = int(settings.get('IGDB_SETTINGS', 'limit_num_games'))
+
+    for i in range(0, num_pages_to_process):
         url = "https://api.igdb.com/v4/games/"
 
         headers = {
@@ -89,9 +89,9 @@ def insert_games(connection, cursor):
             'Authorization': "Bearer " + settings.get('API_KEYS', 'igdb_bearer'),
         }
 
-        page_offset = i*limit_num_igdb_games
+        page_offset = i*limit_num_games
 
-        request_data = f'fields name, summary, url, release_dates.date, platforms, platforms.name, platforms.platform_family, platforms.platform_family.name; limit {str(limit_num_igdb_games)}; offset {str(page_offset)};'
+        request_data = f'fields name, summary, url, genres.name, release_dates.date, platforms, platforms.name, platforms.platform_family, platforms.platform_family.name; limit {str(limit_num_games)}; offset {str(page_offset)};'
 
         print('New request: '+request_data)
 
@@ -100,10 +100,8 @@ def insert_games(connection, cursor):
         if response.status_code == 200:
             games = response.json()
 
-            print(games)
 
             for game in games:
-
                 release_dates = game.get('release_dates', [])
 
                 # Ignore IGDB games that don't have a release date (we need this to link to Rawg)
@@ -125,6 +123,7 @@ def insert_games(connection, cursor):
 
                 # Keep track of our internal id to use when referencing in the platform_game relationship
                 game['internal_game_id'] = cursor.lastrowid
+                insert_genre_info(connection, game)
                 insert_platform_info(connection, game)
 
                 print(f"Inserting: {game_name}")
@@ -134,6 +133,39 @@ def insert_games(connection, cursor):
             print(f"Error: {response.status_code}")
 
         time.sleep(0.5)
+
+
+def insert_genre_info(connection, game):
+    cursor = connection.cursor()
+
+    internal_game_id = game['internal_game_id']
+
+    igdb_genres = game.get('genres')
+
+    if igdb_genres is None:
+        return
+
+    for igdb_genre in igdb_genres:
+        internal_genre_id = -1
+        igdb_genre_id = igdb_genre['id']
+        genre_name = igdb_genre['name']
+
+        try:
+            insert_query = "INSERT IGNORE INTO genre (igdb_genre_id, name) VALUES (%s, %s);"
+            cursor.execute(insert_query, (igdb_genre_id, genre_name))
+            internal_genre_id = cursor.lastrowid
+        except mysql.connector.Error as err:
+            if err.errno == 1062:
+                select_query = "SELECT genre_id FROM genre WHERE igdb_genre_id = %s;"
+                cursor.execute(select_query, (igdb_genre_id,))
+                internal_genre_id = cursor.fetchone()[0]
+            else:
+                raise
+
+        insert_query = "INSERT INTO game_genre (game_id, genre_id) VALUES (%s, %s);"
+        cursor.execute(insert_query, (internal_game_id, internal_genre_id))
+
+    connection.commit()
 
 
 def insert_platform_info(connection, game):
