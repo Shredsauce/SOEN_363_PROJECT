@@ -3,12 +3,14 @@ from mysql.connector import Error
 import configparser
 import requests
 from datetime import datetime
+import time
 
 config_path = 'config.ini'
 create_tables_file = 'create_tables.sql'
 db_name = 'soen_project_phase_1'
 
-limit_num_games = 20
+limit_num_igdb_games = 500
+num_igdb_pages_to_process = 4
 
 settings = configparser.ConfigParser()
 settings.read('settings.ini')
@@ -79,46 +81,59 @@ def populate_database(connection):
 
 
 def insert_games(connection, cursor):
-    url = "https://api.igdb.com/v4/games/"
+    for i in range(0, num_igdb_pages_to_process):
+        url = "https://api.igdb.com/v4/games/"
 
-    headers = {
-        'Client-ID': settings.get('API_KEYS', 'igdb_client_id'),
-        'Authorization': "Bearer " + settings.get('API_KEYS', 'igdb_bearer'),
-    }
+        headers = {
+            'Client-ID': settings.get('API_KEYS', 'igdb_client_id'),
+            'Authorization': "Bearer " + settings.get('API_KEYS', 'igdb_bearer'),
+        }
 
-    response = requests.post(url, headers=headers, data='fields name, summary, url, release_dates.date, platforms, platforms.name, platforms.platform_family,  platforms.platform_family.name; limit '+str(limit_num_games)+';')
-    if response.status_code == 200:
-        games = response.json()
-        for game in games:
+        page_offset = i*limit_num_igdb_games
 
-            release_dates = game.get('release_dates', [])
+        request_data = f'fields name, summary, url, release_dates.date, platforms, platforms.name, platforms.platform_family, platforms.platform_family.name; limit {str(limit_num_igdb_games)}; offset {str(page_offset)};'
 
-            # Ignore IGDB games that don't have a release date (we need this to link to Rawg)
-            if not release_dates or len(release_dates) == 0: continue
+        print('New request: '+request_data)
 
-            release_timestamp = release_dates[0].get('date')
+        response = requests.post(url, headers=headers, data=request_data)
 
-            if not release_timestamp: continue
+        if response.status_code == 200:
+            games = response.json()
 
-            release_date = datetime.utcfromtimestamp(release_timestamp).strftime('%Y-%m-%d')
-            game_name = game.get('name', 'N/A')
-            igdb_id = game['id']
-            summary = game['summary']
-            url = game['url']
+            print(games)
 
-            # Set rawg_id to null for now (instead of making a new request for every IGDB game)
-            insert_query = "INSERT INTO game (name, summary, url, igdb_id, rawg_id, release_date) VALUES (%s, %s, %s, %s, %s, %s);"
-            cursor.execute(insert_query, (game_name, summary, url, igdb_id, None, release_date))
+            for game in games:
 
-            # Keep track of our internal id to use when referencing in the platform_game relationship
-            game['internal_game_id'] = cursor.lastrowid
-            insert_platform_info(connection, game)
+                release_dates = game.get('release_dates', [])
 
-            print(f"Inserting: {game_name}")
+                # Ignore IGDB games that don't have a release date (we need this to link to Rawg)
+                if not release_dates or len(release_dates) == 0: continue
 
-        connection.commit()
-    else:
-        print(f"Error: {response.status_code}")
+                release_timestamp = release_dates[0].get('date')
+
+                if not release_timestamp: continue
+
+                release_date = datetime.utcfromtimestamp(release_timestamp).strftime('%Y-%m-%d')
+                game_name = game.get('name', 'N/A')
+                igdb_id = game['id']
+                summary = game.get('summary', '')
+                url = game.get('url', '')
+
+                # Set rawg_id to null for now (instead of making a new request for every IGDB game)
+                insert_query = "INSERT INTO game (name, summary, url, igdb_id, rawg_id, release_date) VALUES (%s, %s, %s, %s, %s, %s);"
+                cursor.execute(insert_query, (game_name, summary, url, igdb_id, None, release_date))
+
+                # Keep track of our internal id to use when referencing in the platform_game relationship
+                game['internal_game_id'] = cursor.lastrowid
+                insert_platform_info(connection, game)
+
+                print(f"Inserting: {game_name}")
+
+            connection.commit()
+        else:
+            print(f"Error: {response.status_code}")
+
+        time.sleep(0.5)
 
 
 def insert_platform_info(connection, game):
