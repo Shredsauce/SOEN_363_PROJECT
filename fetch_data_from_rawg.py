@@ -1,5 +1,9 @@
 import requests
 import json
+import configparser
+
+settings = configparser.ConfigParser()
+settings.read('settings.ini')
 
 
 def fetch_data_from_rawg(api_key):
@@ -23,5 +27,5 @@ def fetch_data_from_rawg(api_key):
 
 
 if __name__ == "__main__":
-    api_key = "0a24c1f906b14571b145d09e787f6ecc"  # Replace YOUR_API_KEY with your actual RAWG API key
+    api_key = settings.get('API_KEYS', 'rawg_api_key')
     fetch_data_from_rawg(api_key)

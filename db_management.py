@@ -7,10 +7,12 @@ from datetime import datetime
 config_path = 'config.ini'
 create_tables_file = 'create_tables.sql'
 db_name = 'soen_project_phase_1'
-igdb_client_id = '0yr0r2fbldsuya8awjkp3r3kxe3znk'
-igdb_bearer = 'Bearer b9hp4t4dbg9ajpzl6ne9qj90ovsmlc'
-rawg_api_key = 'c1374952adee4d77a6519c7cc374e367'
+
 limit_num_games = 20
+
+settings = configparser.ConfigParser()
+settings.read('settings.ini')
+
 
 def main():
     config = configparser.ConfigParser()
@@ -78,9 +80,10 @@ def populate_database(connection):
 
 def insert_games(connection, cursor):
     url = "https://api.igdb.com/v4/games/"
+
     headers = {
-        'Client-ID': igdb_client_id,
-        'Authorization': igdb_bearer,
+        'Client-ID': settings.get('API_KEYS', 'igdb_client_id'),
+        'Authorization': "Bearer " + settings.get('API_KEYS', 'igdb_bearer'),
     }
 
     response = requests.post(url, headers=headers, data='fields name, release_dates.date, platforms, platforms.name, platforms.platform_family,  platforms.platform_family.name; limit '+str(limit_num_games)+';')
@@ -168,7 +171,7 @@ def insert_platform_info(connection, game):
 
 
 def find_rawg_game_id(game_name, release_date):
-    rawg_search_url = f"https://api.rawg.io/api/games?key={rawg_api_key}&search={game_name}&dates={release_date},{release_date}"
+    rawg_search_url = f"https://api.rawg.io/api/games?key={settings.get('API_KEYS', 'rawg_api_key')}&search={game_name}&dates={release_date},{release_date}"
     response = requests.get(rawg_search_url)
 
     if response.status_code == 200:

@@ -1,14 +1,14 @@
 {
     "count": 51,
-    "next": "https://api.rawg.io/api/platforms?key=0a24c1f906b14571b145d09e787f6ecc&page=2",
+    "next": "https://api.rawg.io/api/platforms?key=c1374952adee4d77a6519c7cc374e367&page=2",
     "previous": null,
     "results": [
         {
             "id": 4,
             "name": "PC",
             "slug": "pc",
-            "games_count": 527586,
-            "image_background": "https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg",
+            "games_count": 528009,
+            "image_background": "https://media.rawg.io/media/games/d82/d82990b9c67ba0d2d09d4e6fa88885a7.jpg",
             "image": null,
             "year_start": null,
             "year_end": null,
@@ -17,37 +17,37 @@
                     "id": 3498,
                     "slug": "grand-theft-auto-v",
                     "name": "Grand Theft Auto V",
-                    "added": 20626
+                    "added": 20639
                 },
                 {
                     "id": 3328,
                     "slug": "the-witcher-3-wild-hunt",
                     "name": "The Witcher 3: Wild Hunt",
-                    "added": 19897
+                    "added": 19906
                 },
                 {
                     "id": 4200,
                     "slug": "portal-2",
                     "name": "Portal 2",
-                    "added": 18775
+                    "added": 18783
                 },
                 {
                     "id": 4291,
                     "slug": "counter-strike-global-offensive",
                     "name": "Counter-Strike: Global Offensive",
-                    "added": 16335
+                    "added": 16344
                 },
                 {
                     "id": 5286,
                     "slug": "tomb-raider",
                     "name": "Tomb Raider (2013)",
-                    "added": 16261
+                    "added": 16270
                 },
                 {
                     "id": 13536,
                     "slug": "portal",
                     "name": "Portal",
-                    "added": 15968
+                    "added": 15979
                 }
             ]
         },
@@ -55,151 +55,7 @@
             "id": 187,
             "name": "PlayStation 5",
             "slug": "playstation5",
-            "games_count": 1058,
-            "image_background": "https://media.rawg.io/media/games/e11/e11325e2f89151d31f612e38dee3b6a0.jpg",
-            "image": null,
-            "year_start": 2020,
-            "year_end": null,
-            "games": [
-                {
-                    "id": 3498,
-                    "slug": "grand-theft-auto-v",
-                    "name": "Grand Theft Auto V",
-                    "added": 20626
-                },
-                {
-                    "id": 3328,
-                    "slug": "the-witcher-3-wild-hunt",
-                    "name": "The Witcher 3: Wild Hunt",
-                    "added": 19897
-                },
-                {
-                    "id": 5679,
-                    "slug": "the-elder-scrolls-v-skyrim",
-                    "name": "The Elder Scrolls V: Skyrim",
-                    "added": 15520
-                },
-                {
-                    "id": 32,
-                    "slug": "destiny-2",
-                    "name": "Destiny 2",
-                    "added": 13193
-                },
-                {
-                    "id": 41494,
-                    "slug": "cyberpunk-2077",
-                    "name": "Cyberpunk 2077",
-                    "added": 12348
-                },
-                {
-                    "id": 766,
-                    "slug": "warframe",
-                    "name": "Warframe",
-                    "added": 11869
-                }
-            ]
-        },
-        {
-            "id": 1,
-            "name": "Xbox One",
-            "slug": "xbox-one",
-            "games_count": 5613,
-            "image_background": "https://media.rawg.io/media/games/4cf/4cfc6b7f1850590a4634b08bfab308ab.jpg",
-            "image": null,
-            "year_start": null,
-            "year_end": null,
-            "games": [
-                {
-                    "id": 3498,
-                    "slug": "grand-theft-auto-v",
-                    "name": "Grand Theft Auto V",
-                    "added": 20626
-                },
-                {
-                    "id": 3328,
-                    "slug": "the-witcher-3-wild-hunt",
-                    "name": "The Witcher 3: Wild Hunt",
-                    "added": 19897
-                },
-                {
-                    "id": 4200,
-                    "slug": "portal-2",
-                    "name": "Portal 2",
-                    "added": 18775
-                },
-                {
-                    "id": 5286,
-                    "slug": "tomb-raider",
-                    "name": "Tomb Raider (2013)",
-                    "added": 16261
-                },
-                {
-                    "id": 5679,
-                    "slug": "the-elder-scrolls-v-skyrim",
-                    "name": "The Elder Scrolls V: Skyrim",
-                    "added": 15520
-                },
-                {
-                    "id": 28,
-                    "slug": "red-dead-redemption-2",
-                    "name": "Red Dead Redemption 2",
-                    "added": 15084
-                }
-            ]
-        },
-        {
-            "id": 18,
-            "name": "PlayStation 4",
-            "slug": "playstation4",
-            "games_count": 6800,
-            "image_background": "https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg",
-            "image": null,
-            "year_start": null,
-            "year_end": null,
-            "games": [
-                {
-                    "id": 3498,
-                    "slug": "grand-theft-auto-v",
-                    "name": "Grand Theft Auto V",
-                    "added": 20626
-                },
-                {
-                    "id": 3328,
-                    "slug": "the-witcher-3-wild-hunt",
-                    "name": "The Witcher 3: Wild Hunt",
-                    "added": 19897
-                },
-                {
-                    "id": 5286,
-                    "slug": "tomb-raider",
-                    "name": "Tomb Raider (2013)",
-                    "added": 16261
-                },
-                {
-                    "id": 5679,
-                    "slug": "the-elder-scrolls-v-skyrim",
-                    "name": "The Elder Scrolls V: Skyrim",
-                    "added": 15520
-                },
-                {
-                    "id": 28,
-                    "slug": "red-dead-redemption-2",
-                    "name": "Red Dead Redemption 2",
-                    "added": 15084
-                },
-                {
-                    "id": 4062,
-                    "slug": "bioshock-infinite",
-                    "name": "BioShock Infinite",
-                    "added": 14974
-                }
-            ]
-        },
-        {
-            "id": 186,
-            "name": "Xbox Series S/X",
-            "slug": "xbox-series-x",
-            "games_count": 912,
+            "games_count": 1060,
             "image_background": "https://media.rawg.io/media/games/26d/26d4437715bee60138dab4a7c8c59c92.jpg",
             "image": null,
             "year_start": 2020,
@@ -209,37 +65,181 @@
                     "id": 3498,
                     "slug": "grand-theft-auto-v",
                     "name": "Grand Theft Auto V",
-                    "added": 20626
+                    "added": 20639
                 },
                 {
                     "id": 3328,
                     "slug": "the-witcher-3-wild-hunt",
                     "name": "The Witcher 3: Wild Hunt",
-                    "added": 19897
+                    "added": 19906
                 },
                 {
                     "id": 5679,
                     "slug": "the-elder-scrolls-v-skyrim",
                     "name": "The Elder Scrolls V: Skyrim",
-                    "added": 15520
+                    "added": 15531
                 },
                 {
                     "id": 32,
                     "slug": "destiny-2",
                     "name": "Destiny 2",
-                    "added": 13193
+                    "added": 13195
                 },
                 {
                     "id": 41494,
                     "slug": "cyberpunk-2077",
                     "name": "Cyberpunk 2077",
-                    "added": 12348
+                    "added": 12360
                 },
                 {
                     "id": 766,
                     "slug": "warframe",
                     "name": "Warframe",
-                    "added": 11869
+                    "added": 11873
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "name": "PlayStation 4",
+            "slug": "playstation4",
+            "games_count": 6804,
+            "image_background": "https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg",
+            "image": null,
+            "year_start": null,
+            "year_end": null,
+            "games": [
+                {
+                    "id": 3498,
+                    "slug": "grand-theft-auto-v",
+                    "name": "Grand Theft Auto V",
+                    "added": 20639
+                },
+                {
+                    "id": 3328,
+                    "slug": "the-witcher-3-wild-hunt",
+                    "name": "The Witcher 3: Wild Hunt",
+                    "added": 19906
+                },
+                {
+                    "id": 5286,
+                    "slug": "tomb-raider",
+                    "name": "Tomb Raider (2013)",
+                    "added": 16270
+                },
+                {
+                    "id": 5679,
+                    "slug": "the-elder-scrolls-v-skyrim",
+                    "name": "The Elder Scrolls V: Skyrim",
+                    "added": 15531
+                },
+                {
+                    "id": 28,
+                    "slug": "red-dead-redemption-2",
+                    "name": "Red Dead Redemption 2",
+                    "added": 15094
+                },
+                {
+                    "id": 4062,
+                    "slug": "bioshock-infinite",
+                    "name": "BioShock Infinite",
+                    "added": 14977
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "name": "Xbox One",
+            "slug": "xbox-one",
+            "games_count": 5616,
+            "image_background": "https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg",
+            "image": null,
+            "year_start": null,
+            "year_end": null,
+            "games": [
+                {
+                    "id": 3498,
+                    "slug": "grand-theft-auto-v",
+                    "name": "Grand Theft Auto V",
+                    "added": 20639
+                },
+                {
+                    "id": 3328,
+                    "slug": "the-witcher-3-wild-hunt",
+                    "name": "The Witcher 3: Wild Hunt",
+                    "added": 19906
+                },
+                {
+                    "id": 4200,
+                    "slug": "portal-2",
+                    "name": "Portal 2",
+                    "added": 18783
+                },
+                {
+                    "id": 5286,
+                    "slug": "tomb-raider",
+                    "name": "Tomb Raider (2013)",
+                    "added": 16270
+                },
+                {
+                    "id": 5679,
+                    "slug": "the-elder-scrolls-v-skyrim",
+                    "name": "The Elder Scrolls V: Skyrim",
+                    "added": 15531
+                },
+                {
+                    "id": 28,
+                    "slug": "red-dead-redemption-2",
+                    "name": "Red Dead Redemption 2",
+                    "added": 15094
+                }
+            ]
+        },
+        {
+            "id": 186,
+            "name": "Xbox Series S/X",
+            "slug": "xbox-series-x",
+            "games_count": 917,
+            "image_background": "https://media.rawg.io/media/games/5eb/5eb49eb2fa0738fdb5bacea557b1bc57.jpg",
+            "image": null,
+            "year_start": 2020,
+            "year_end": null,
+            "games": [
+                {
+                    "id": 3498,
+                    "slug": "grand-theft-auto-v",
+                    "name": "Grand Theft Auto V",
+                    "added": 20639
+                },
+                {
+                    "id": 3328,
+                    "slug": "the-witcher-3-wild-hunt",
+                    "name": "The Witcher 3: Wild Hunt",
+                    "added": 19906
+                },
+                {
+                    "id": 5679,
+                    "slug": "the-elder-scrolls-v-skyrim",
+                    "name": "The Elder Scrolls V: Skyrim",
+                    "added": 15531
+                },
+                {
+                    "id": 32,
+                    "slug": "destiny-2",
+                    "name": "Destiny 2",
+                    "added": 13195
+                },
+                {
+                    "id": 41494,
+                    "slug": "cyberpunk-2077",
+                    "name": "Cyberpunk 2077",
+                    "added": 12360
+                },
+                {
+                    "id": 766,
+                    "slug": "warframe",
+                    "name": "Warframe",
+                    "added": 11873
                 }
             ]
         },
@@ -247,8 +247,8 @@
             "id": 7,
             "name": "Nintendo Switch",
             "slug": "nintendo-switch",
-            "games_count": 5439,
-            "image_background": "https://media.rawg.io/media/games/9dd/9ddabb34840ea9227556670606cf8ea3.jpg",
+            "games_count": 5442,
+            "image_background": "https://media.rawg.io/media/games/5eb/5eb49eb2fa0738fdb5bacea557b1bc57.jpg",
             "image": null,
             "year_start": null,
             "year_end": null,
@@ -257,37 +257,37 @@
                     "id": 3328,
                     "slug": "the-witcher-3-wild-hunt",
                     "name": "The Witcher 3: Wild Hunt",
-                    "added": 19897
+                    "added": 19906
                 },
                 {
                     "id": 13536,
                     "slug": "portal",
                     "name": "Portal",
-                    "added": 15968
+                    "added": 15979
                 },
                 {
                     "id": 5679,
                     "slug": "the-elder-scrolls-v-skyrim",
                     "name": "The Elder Scrolls V: Skyrim",
-                    "added": 15520
+                    "added": 15531
                 },
                 {
                     "id": 4062,
                     "slug": "bioshock-infinite",
                     "name": "BioShock Infinite",
-                    "added": 14974
+                    "added": 14977
                 },
                 {
                     "id": 1030,
                     "slug": "limbo",
                     "name": "Limbo",
-                    "added": 13159
+                    "added": 13167
                 },
                 {
                     "id": 2454,
                     "slug": "doom",
                     "name": "DOOM (2016)",
-                    "added": 12976
+                    "added": 12983
                 }
             ]
         },
@@ -296,7 +296,7 @@
             "name": "iOS",
             "slug": "ios",
             "games_count": 77242,
-            "image_background": "https://media.rawg.io/media/games/713/713269608dc8f2f40f5a670a14b2de94.jpg",
+            "image_background": "https://media.rawg.io/media/games/5fa/5fae5fec3c943179e09da67a4427d68f.jpg",
             "image": null,
             "year_start": null,
             "year_end": null,
@@ -305,37 +305,37 @@
                     "id": 3439,
                     "slug": "life-is-strange-episode-1-2",
                     "name": "Life is Strange",
-                    "added": 14749
+                    "added": 14757
                 },
                 {
                     "id": 1030,
                     "slug": "limbo",
                     "name": "Limbo",
-                    "added": 13159
+                    "added": 13167
                 },
                 {
                     "id": 422,
                     "slug": "terraria",
                     "name": "Terraria",
-                    "added": 12123
+                    "added": 12130
                 },
                 {
                     "id": 416,
                     "slug": "grand-theft-auto-san-andreas",
                     "name": "Grand Theft Auto: San Andreas",
-                    "added": 11010
+                    "added": 11015
                 },
                 {
                     "id": 23027,
                     "slug": "the-walking-dead",
                     "name": "The Walking Dead: Season 1",
-                    "added": 10954
+                    "added": 10959
                 },
                 {
                     "id": 654,
                     "slug": "stardew-valley",
                     "name": "Stardew Valley",
-                    "added": 9652
+                    "added": 9659
                 }
             ]
         },
@@ -343,8 +343,8 @@
             "id": 21,
             "name": "Android",
             "slug": "android",
-            "games_count": 52344,
-            "image_background": "https://media.rawg.io/media/games/6d3/6d33014a4ed48a19c30a77ead5a0f62e.jpg",
+            "games_count": 52345,
+            "image_background": "https://media.rawg.io/media/games/be0/be084b850302abe81675bc4ffc08a0d0.jpg",
             "image": null,
             "year_start": null,
             "year_end": null,
@@ -353,37 +353,37 @@
                     "id": 13536,
                     "slug": "portal",
                     "name": "Portal",
-                    "added": 15968
+                    "added": 15979
                 },
                 {
                     "id": 3439,
                     "slug": "life-is-strange-episode-1-2",
                     "name": "Life is Strange",
-                    "added": 14749
+                    "added": 14757
                 },
                 {
                     "id": 802,
                     "slug": "borderlands-2",
                     "name": "Borderlands 2",
-                    "added": 14740
+                    "added": 14746
                 },
                 {
                     "id": 13537,
                     "slug": "half-life-2",
                     "name": "Half-Life 2",
-                    "added": 14208
+                    "added": 14212
                 },
                 {
                     "id": 1030,
                     "slug": "limbo",
                     "name": "Limbo",
-                    "added": 13159
+                    "added": 13167
                 },
                 {
                     "id": 422,
                     "slug": "terraria",
                     "name": "Terraria",
-                    "added": 12123
+                    "added": 12130
                 }
             ]
         },
@@ -401,19 +401,19 @@
                     "id": 422,
                     "slug": "terraria",
                     "name": "Terraria",
-                    "added": 12123
+                    "added": 12130
                 },
                 {
                     "id": 22509,
                     "slug": "minecraft",
                     "name": "Minecraft",
-                    "added": 8202
+                    "added": 8211
                 },
                 {
                     "id": 2597,
                     "slug": "lego-lord-of-the-rings",
                     "name": "LEGO The Lord of the Rings",
-                    "added": 5342
+                    "added": 5343
                 },
                 {
                     "id": 250,
@@ -431,7 +431,7 @@
                     "id": 4012,
                     "slug": "resident-evil-revelations-biohazard-revelations",
                     "name": "Resident Evil Revelations",
-                    "added": 4094
+                    "added": 4098
                 }
             ]
         },
@@ -449,37 +449,37 @@
                     "id": 865,
                     "slug": "call-of-duty-black-ops",
                     "name": "Call of Duty: Black Ops",
-                    "added": 6568
+                    "added": 6571
                 },
                 {
                     "id": 3486,
                     "slug": "syberia",
                     "name": "Syberia",
-                    "added": 6291
+                    "added": 6292
                 },
                 {
                     "id": 2597,
                     "slug": "lego-lord-of-the-rings",
                     "name": "LEGO The Lord of the Rings",
-                    "added": 5342
+                    "added": 5343
                 },
                 {
                     "id": 5578,
                     "slug": "grid",
                     "name": "GRID (2008)",
-                    "added": 5283
+                    "added": 5284
                 },
                 {
                     "id": 4869,
                     "slug": "tomb-raider-underworld",
                     "name": "Tomb Raider: Underworld",
-                    "added": 4454
+                    "added": 4456
                 },
                 {
                     "id": 5528,
                     "slug": "call-of-duty-world-at-war",
                     "name": "Call of Duty: World at War",
-                    "added": 4338
+                    "added": 4339
                 }
             ]
         },
@@ -497,19 +497,19 @@
                     "id": 19309,
                     "slug": "plants-vs-zombies-goty-edition",
                     "name": "Plants vs. Zombies GOTY Edition",
-                    "added": 3605
+                    "added": 3610
                 },
                 {
                     "id": 949,
                     "slug": "cut-the-rope",
                     "name": "Cut the Rope",
-                    "added": 634
+                    "added": 636
                 },
                 {
                     "id": 223378,
                     "slug": "ace-attorney-investigations-miles-edgeworth",
                     "name": "Ace Attorney Investigations - Miles Edgeworth",
-                    "added": 197
+                    "added": 198
                 },
                 {
                     "id": 22727,
@@ -535,8 +535,8 @@
             "id": 5,
             "name": "macOS",
             "slug": "macos",
-            "games_count": 103640,
-            "image_background": "https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg",
+            "games_count": 103698,
+            "image_background": "https://media.rawg.io/media/games/6fc/6fcf4cd3b17c288821388e6085bb0fc9.jpg",
             "image": null,
             "year_start": null,
             "year_end": null,
@@ -545,37 +545,37 @@
                     "id": 3328,
                     "slug": "the-witcher-3-wild-hunt",
                     "name": "The Witcher 3: Wild Hunt",
-                    "added": 19897
+                    "added": 19906
                 },
                 {
                     "id": 4200,
                     "slug": "portal-2",
                     "name": "Portal 2",
-                    "added": 18775
+                    "added": 18783
                 },
                 {
                     "id": 5286,
                     "slug": "tomb-raider",
                     "name": "Tomb Raider (2013)",
-                    "added": 16261
+                    "added": 16270
                 },
                 {
                     "id": 13536,
                     "slug": "portal",
                     "name": "Portal",
-                    "added": 15968
+                    "added": 15979
                 },
                 {
                     "id": 12020,
                     "slug": "left-4-dead-2",
                     "name": "Left 4 Dead 2",
-                    "added": 15828
+                    "added": 15833
                 },
                 {
                     "id": 3439,
                     "slug": "life-is-strange-episode-1-2",
                     "name": "Life is Strange",
-                    "added": 14749
+                    "added": 14757
                 }
             ]
         },
@@ -583,8 +583,8 @@
             "id": 6,
             "name": "Linux",
             "slug": "linux",
-            "games_count": 76649,
-            "image_background": "https://media.rawg.io/media/games/7a2/7a2500ee8b2c0e1ff268bb4479463dea.jpg",
+            "games_count": 76690,
+            "image_background": "https://media.rawg.io/media/games/6fc/6fcf4cd3b17c288821388e6085bb0fc9.jpg",
             "image": null,
             "year_start": null,
             "year_end": null,
@@ -593,37 +593,37 @@
                     "id": 4200,
                     "slug": "portal-2",
                     "name": "Portal 2",
-                    "added": 18775
+                    "added": 18783
                 },
                 {
                     "id": 4291,
                     "slug": "counter-strike-global-offensive",
                     "name": "Counter-Strike: Global Offensive",
-                    "added": 16335
+                    "added": 16344
                 },
                 {
                     "id": 13536,
                     "slug": "portal",
                     "name": "Portal",
-                    "added": 15968
+                    "added": 15979
                 },
                 {
                     "id": 12020,
                     "slug": "left-4-dead-2",
                     "name": "Left 4 Dead 2",
-                    "added": 15828
+                    "added": 15833
                 },
                 {
                     "id": 4062,
                     "slug": "bioshock-infinite",
                     "name": "BioShock Infinite",
-                    "added": 14974
+                    "added": 14977
                 },
                 {
                     "id": 3439,
                     "slug": "life-is-strange-episode-1-2",
                     "name": "Life is Strange",
-                    "added": 14749
+                    "added": 14757
                 }
             ]
         },
@@ -641,37 +641,37 @@
                     "id": 3498,
                     "slug": "grand-theft-auto-v",
                     "name": "Grand Theft Auto V",
-                    "added": 20626
+                    "added": 20639
                 },
                 {
                     "id": 4200,
                     "slug": "portal-2",
                     "name": "Portal 2",
-                    "added": 18775
+                    "added": 18783
                 },
                 {
                     "id": 4291,
                     "slug": "counter-strike-global-offensive",
                     "name": "Counter-Strike: Global Offensive",
-                    "added": 16335
+                    "added": 16344
                 },
                 {
                     "id": 5286,
                     "slug": "tomb-raider",
                     "name": "Tomb Raider (2013)",
-                    "added": 16261
+                    "added": 16270
                 },
                 {
                     "id": 13536,
                     "slug": "portal",
                     "name": "Portal",
-                    "added": 15968
+                    "added": 15979
                 },
                 {
                     "id": 12020,
                     "slug": "left-4-dead-2",
                     "name": "Left 4 Dead 2",
-                    "added": 15828
+                    "added": 15833
                 }
             ]
         },
@@ -689,37 +689,37 @@
                     "id": 13537,
                     "slug": "half-life-2",
                     "name": "Half-Life 2",
-                    "added": 14208
+                    "added": 14212
                 },
                 {
                     "id": 416,
                     "slug": "grand-theft-auto-san-andreas",
                     "name": "Grand Theft Auto: San Andreas",
-                    "added": 11010
+                    "added": 11015
                 },
                 {
                     "id": 430,
                     "slug": "grand-theft-auto-vice-city",
                     "name": "Grand Theft Auto: Vice City",
-                    "added": 9096
+                    "added": 9101
                 },
                 {
                     "id": 19301,
                     "slug": "counter-strike",
                     "name": "Counter-Strike",
-                    "added": 8472
+                    "added": 8477
                 },
                 {
                     "id": 2361,
                     "slug": "psychonauts",
                     "name": "Psychonauts",
-                    "added": 7806
+                    "added": 7805
                 },
                 {
                     "id": 432,
                     "slug": "grand-theft-auto-iii",
                     "name": "Grand Theft Auto III",
-                    "added": 6827
+                    "added": 6831
                 }
             ]
         },
@@ -737,37 +737,37 @@
                     "id": 3498,
                     "slug": "grand-theft-auto-v",
                     "name": "Grand Theft Auto V",
-                    "added": 20626
+                    "added": 20639
                 },
                 {
                     "id": 4200,
                     "slug": "portal-2",
                     "name": "Portal 2",
-                    "added": 18775
+                    "added": 18783
                 },
                 {
                     "id": 4291,
                     "slug": "counter-strike-global-offensive",
                     "name": "Counter-Strike: Global Offensive",
-                    "added": 16335
+                    "added": 16344
                 },
                 {
                     "id": 5286,
                     "slug": "tomb-raider",
                     "name": "Tomb Raider (2013)",
-                    "added": 16261
+                    "added": 16270
                 },
                 {
                     "id": 13536,
                     "slug": "portal",
                     "name": "Portal",
-                    "added": 15968
+                    "added": 15979
                 },
                 {
                     "id": 5679,
                     "slug": "the-elder-scrolls-v-skyrim",
                     "name": "The Elder Scrolls V: Skyrim",
-                    "added": 15520
+                    "added": 15531
                 }
             ]
         },
@@ -785,31 +785,31 @@
                     "id": 416,
                     "slug": "grand-theft-auto-san-andreas",
                     "name": "Grand Theft Auto: San Andreas",
-                    "added": 11010
+                    "added": 11015
                 },
                 {
                     "id": 18080,
                     "slug": "half-life",
                     "name": "Half-Life",
-                    "added": 10064
+                    "added": 10068
                 },
                 {
                     "id": 430,
                     "slug": "grand-theft-auto-vice-city",
                     "name": "Grand Theft Auto: Vice City",
-                    "added": 9096
+                    "added": 9101
                 },
                 {
                     "id": 2361,
                     "slug": "psychonauts",
                     "name": "Psychonauts",
-                    "added": 7806
+                    "added": 7805
                 },
                 {
                     "id": 432,
                     "slug": "grand-theft-auto-iii",
                     "name": "Grand Theft Auto III",
-                    "added": 6827
+                    "added": 6831
                 },
                 {
                     "id": 56184,
@@ -823,8 +823,8 @@
             "id": 27,
             "name": "PlayStation",
             "slug": "playstation1",
-            "games_count": 1669,
-            "image_background": "https://media.rawg.io/media/screenshots/ba5/ba5f0dd05f44cc48c918683764e3a125.jpg",
+            "games_count": 1670,
+            "image_background": "https://media.rawg.io/media/games/6c0/6c00ee85d1344f58c469e8e47fd8ae7c.jpg",
             "image": null,
             "year_start": null,
             "year_end": null,
@@ -833,13 +833,13 @@
                     "id": 5159,
                     "slug": "resident-evil-2",
                     "name": "Resident Evil 2 (1998)",
-                    "added": 5878
+                    "added": 5880
                 },
                 {
                     "id": 5193,
                     "slug": "oddworld-abes-oddysee",
                     "name": "Oddworld: Abe's Oddysee",
-                    "added": 5403
+                    "added": 5405
                 },
                 {
                     "id": 3449,
@@ -851,7 +851,7 @@
                     "id": 52939,
                     "slug": "final-fantasy-vii",
                     "name": "Final Fantasy VII (1997)",
-                    "added": 4030
+                    "added": 4031
                 },
                 {
                     "id": 20569,
@@ -881,37 +881,37 @@
                     "id": 802,
                     "slug": "borderlands-2",
                     "name": "Borderlands 2",
-                    "added": 14740
+                    "added": 14746
                 },
                 {
                     "id": 1030,
                     "slug": "limbo",
                     "name": "Limbo",
-                    "added": 13159
+                    "added": 13167
                 },
                 {
                     "id": 422,
                     "slug": "terraria",
                     "name": "Terraria",
-                    "added": 12123
+                    "added": 12130
                 },
                 {
                     "id": 23027,
                     "slug": "the-walking-dead",
                     "name": "The Walking Dead: Season 1",
-                    "added": 10954
+                    "added": 10959
                 },
                 {
                     "id": 3612,
                     "slug": "hotline-miami",
                     "name": "Hotline Miami",
-                    "added": 10130
+                    "added": 10136
                 },
                 {
                     "id": 654,
                     "slug": "stardew-valley",
                     "name": "Stardew Valley",
-                    "added": 9652
+                    "added": 9659
                 }
             ]
         },
@@ -929,7 +929,7 @@
                     "id": 13886,
                     "slug": "star-wars-battlefront-ii-2",
                     "name": "Star Wars: Battlefront II (2005)",
-                    "added": 4511
+                    "added": 4512
                 },
                 {
                     "id": 5298,
@@ -953,13 +953,13 @@
                     "id": 16543,
                     "slug": "lego-batman",
                     "name": "LEGO Batman",
-                    "added": 2956
+                    "added": 2957
                 },
                 {
                     "id": 58890,
                     "slug": "need-for-speed-most-wanted",
                     "name": "Need For Speed: Most Wanted",
-                    "added": 2823
+                    "added": 2829
                 }
             ]
         },
@@ -977,31 +977,31 @@
                     "id": 422,
                     "slug": "terraria",
                     "name": "Terraria",
-                    "added": 12123
+                    "added": 12130
                 },
                 {
                     "id": 3144,
                     "slug": "super-meat-boy",
                     "name": "Super Meat Boy",
-                    "added": 9124
+                    "added": 9127
                 },
                 {
                     "id": 3841,
                     "slug": "assassins-creed-iv-black-flag",
                     "name": "Assassin\u2019s Creed IV: Black Flag",
-                    "added": 9067
+                    "added": 9073
                 },
                 {
                     "id": 22509,
                     "slug": "minecraft",
                     "name": "Minecraft",
-                    "added": 8202
+                    "added": 8211
                 },
                 {
                     "id": 3687,
                     "slug": "watch-dogs",
                     "name": "Watch Dogs",
-                    "added": 7833
+                    "added": 7840
                 },
                 {
                     "id": 3876,
@@ -1025,7 +1025,7 @@
                     "id": 865,
                     "slug": "call-of-duty-black-ops",
                     "name": "Call of Duty: Black Ops",
-                    "added": 6568
+                    "added": 6571
                 },
                 {
                     "id": 56184,
@@ -1037,25 +1037,25 @@
                     "id": 11276,
                     "slug": "call-of-duty-modern-warfare-3",
                     "name": "Call of Duty: Modern Warfare 3",
-                    "added": 5984
+                    "added": 5985
                 },
                 {
                     "id": 2597,
                     "slug": "lego-lord-of-the-rings",
                     "name": "LEGO The Lord of the Rings",
-                    "added": 5342
+                    "added": 5343
                 },
                 {
                     "id": 4869,
                     "slug": "tomb-raider-underworld",
                     "name": "Tomb Raider: Underworld",
-                    "added": 4454
+                    "added": 4456
                 },
                 {
                     "id": 5528,
                     "slug": "call-of-duty-world-at-war",
                     "name": "Call of Duty: World at War",
-                    "added": 4338
+                    "added": 4339
                 }
             ]
         },
@@ -1079,13 +1079,13 @@
                     "id": 5159,
                     "slug": "resident-evil-2",
                     "name": "Resident Evil 2 (1998)",
-                    "added": 5878
+                    "added": 5880
                 },
                 {
                     "id": 19592,
                     "slug": "hitman-2-silent-assassin",
                     "name": "Hitman 2: Silent Assassin",
-                    "added": 4320
+                    "added": 4323
                 },
                 {
                     "id": 5298,
@@ -1103,7 +1103,7 @@
                     "id": 13909,
                     "slug": "prince-of-persia-the-sands-of-time",
                     "name": "Prince of Persia: The Sands of Time",
-                    "added": 3197
+                    "added": 3199
                 }
             ]
         },
@@ -1121,31 +1121,31 @@
                     "id": 5159,
                     "slug": "resident-evil-2",
                     "name": "Resident Evil 2 (1998)",
-                    "added": 5878
+                    "added": 5880
                 },
                 {
                     "id": 54491,
                     "slug": "quake",
                     "name": "Quake",
-                    "added": 3099
+                    "added": 3100
                 },
                 {
                     "id": 20466,
                     "slug": "worms-armageddon",
                     "name": "Worms Armageddon",
-                    "added": 2940
+                    "added": 2941
                 },
                 {
                     "id": 54492,
                     "slug": "quake-2",
                     "name": "Quake II",
-                    "added": 2404
+                    "added": 2405
                 },
                 {
                     "id": 25097,
                     "slug": "the-legend-of-zelda-ocarina-of-time",
                     "name": "The Legend of Zelda: Ocarina of Time",
-                    "added": 1696
+                    "added": 1698
                 },
                 {
                     "id": 28532,
@@ -1169,25 +1169,25 @@
                     "id": 53341,
                     "slug": "jet-set-radio-2012",
                     "name": "Jet Set Radio",
-                    "added": 5009
+                    "added": 5010
                 },
                 {
                     "id": 17975,
                     "slug": "doom-ii",
                     "name": "DOOM II",
-                    "added": 3075
+                    "added": 3076
                 },
                 {
                     "id": 19646,
                     "slug": "splinter-cell",
                     "name": "Tom Clancy's Splinter Cell",
-                    "added": 2094
+                    "added": 2096
                 },
                 {
                     "id": 53446,
                     "slug": "need-for-speed-underground-2-2",
                     "name": "Need for Speed: Underground 2",
-                    "added": 2043
+                    "added": 2050
                 },
                 {
                     "id": 4005,
@@ -1199,7 +1199,7 @@
                     "id": 5265,
                     "slug": "need-for-speed-carbon",
                     "name": "Need For Speed Carbon",
-                    "added": 1608
+                    "added": 1611
                 }
             ]
         },
@@ -1217,7 +1217,7 @@
                     "id": 20466,
                     "slug": "worms-armageddon",
                     "name": "Worms Armageddon",
-                    "added": 2940
+                    "added": 2941
                 },
                 {
                     "id": 57607,
@@ -1229,25 +1229,25 @@
                     "id": 52997,
                     "slug": "grand-theft-auto-2-1999",
                     "name": "Grand Theft Auto 2",
-                    "added": 1889
+                    "added": 1890
                 },
                 {
                     "id": 52998,
                     "slug": "grand-theft-auto-1998",
                     "name": "Grand Theft Auto",
-                    "added": 1808
+                    "added": 1810
                 },
                 {
                     "id": 25080,
                     "slug": "super-mario-bros",
                     "name": "Super Mario Bros.",
-                    "added": 1417
+                    "added": 1419
                 },
                 {
                     "id": 24030,
                     "slug": "super-mario-bros-3",
                     "name": "Super Mario Bros. 3",
-                    "added": 1119
+                    "added": 1121
                 }
             ]
         },
@@ -1271,7 +1271,7 @@
                     "id": 52998,
                     "slug": "grand-theft-auto-1998",
                     "name": "Grand Theft Auto",
-                    "added": 1808
+                    "added": 1810
                 },
                 {
                     "id": 52175,
@@ -1283,7 +1283,7 @@
                     "id": 54285,
                     "slug": "mortal-kombat",
                     "name": "Mortal Kombat",
-                    "added": 1744
+                    "added": 1746
                 },
                 {
                     "id": 14829,
@@ -1295,7 +1295,7 @@
                     "id": 23762,
                     "slug": "pokemon-red",
                     "name": "Pok\u00e9mon Red, Blue, Yellow",
-                    "added": 1023
+                    "added": 1025
                 }
             ]
         },
@@ -1325,7 +1325,7 @@
                     "id": 54285,
                     "slug": "mortal-kombat",
                     "name": "Mortal Kombat",
-                    "added": 1744
+                    "added": 1746
                 },
                 {
                     "id": 52884,
@@ -1337,7 +1337,7 @@
                     "id": 24899,
                     "slug": "super-mario-world",
                     "name": "Super Mario World",
-                    "added": 1456
+                    "added": 1457
                 },
                 {
                     "id": 1063,
@@ -1373,25 +1373,25 @@
                     "id": 25080,
                     "slug": "super-mario-bros",
                     "name": "Super Mario Bros.",
-                    "added": 1417
+                    "added": 1419
                 },
                 {
                     "id": 24030,
                     "slug": "super-mario-bros-3",
                     "name": "Super Mario Bros. 3",
-                    "added": 1119
+                    "added": 1121
                 },
                 {
                     "id": 24881,
                     "slug": "pac-man",
                     "name": "Pac-Man",
-                    "added": 788
+                    "added": 790
                 },
                 {
                     "id": 24072,
                     "slug": "the-legend-of-zelda",
                     "name": "The Legend of Zelda",
-                    "added": 723
+                    "added": 724
                 }
             ]
         },
@@ -1400,7 +1400,7 @@
             "name": "Classic Macintosh",
             "slug": "macintosh",
             "games_count": 674,
-            "image_background": "https://media.rawg.io/media/screenshots/52b/52b958a7b263d4f264648b710e76a236.jpg",
+            "image_background": "https://media.rawg.io/media/games/14a/14a83c56ff668baaced6e8c8704b6391.jpg",
             "image": null,
             "year_start": null,
             "year_end": null,
@@ -1409,13 +1409,13 @@
                     "id": 13554,
                     "slug": "fallout-a-post-nuclear-role-playing-game",
                     "name": "Fallout",
-                    "added": 7738
+                    "added": 7741
                 },
                 {
                     "id": 2518,
                     "slug": "max-payne",
                     "name": "Max Payne",
-                    "added": 5306
+                    "added": 5310
                 },
                 {
                     "id": 12018,
@@ -1427,13 +1427,13 @@
                     "id": 54491,
                     "slug": "quake",
                     "name": "Quake",
-                    "added": 3099
+                    "added": 3100
                 },
                 {
                     "id": 17975,
                     "slug": "doom-ii",
                     "name": "DOOM II",
-                    "added": 3075
+                    "added": 3076
                 },
                 {
                     "id": 57908,
@@ -1481,7 +1481,7 @@
                     "id": 24881,
                     "slug": "pac-man",
                     "name": "Pac-Man",
-                    "added": 788
+                    "added": 790
                 },
                 {
                     "id": 51175,
@@ -1496,7 +1496,7 @@
             "name": "Commodore / Amiga",
             "slug": "commodore-amiga",
             "games_count": 2079,
-            "image_background": "https://media.rawg.io/media/screenshots/101/1015fe740ce5654eb97c9140f6da3c3e.jpg",
+            "image_background": "https://media.rawg.io/media/games/637/637d7dc2f44d0f6ddd3ee2c0b1366962.jpg",
             "image": null,
             "year_start": null,
             "year_end": null,
@@ -1511,7 +1511,7 @@
                     "id": 54491,
                     "slug": "quake",
                     "name": "Quake",
-                    "added": 3099
+                    "added": 3100
                 },
                 {
                     "id": 22734,
@@ -1523,7 +1523,7 @@
                     "id": 54492,
                     "slug": "quake-2",
                     "name": "Quake II",
-                    "added": 2404
+                    "added": 2405
                 },
                 {
                     "id": 30119,
@@ -1553,19 +1553,19 @@
                     "id": 3802,
                     "slug": "double-dragon",
                     "name": "Double Dragon",
-                    "added": 460
+                    "added": 462
                 },
                 {
                     "id": 52512,
                     "slug": "arcade-archives-donkey-kong",
                     "name": "Donkey Kong",
-                    "added": 404
+                    "added": 405
                 },
                 {
                     "id": 52434,
                     "slug": "mario-bros-1983",
                     "name": "Mario Bros. (1983)",
-                    "added": 297
+                    "added": 298
                 },
                 {
                     "id": 28279,
@@ -1577,7 +1577,7 @@
                     "id": 52513,
                     "slug": "donkey-kong-jr",
                     "name": "Donkey Kong Jr.",
-                    "added": 140
+                    "added": 141
                 },
                 {
                     "id": 53830,
@@ -1601,13 +1601,13 @@
                     "id": 24881,
                     "slug": "pac-man",
                     "name": "Pac-Man",
-                    "added": 788
+                    "added": 790
                 },
                 {
                     "id": 52434,
                     "slug": "mario-bros-1983",
                     "name": "Mario Bros. (1983)",
-                    "added": 297
+                    "added": 298
                 },
                 {
                     "id": 28279,
@@ -1625,13 +1625,13 @@
                     "id": 52444,
                     "slug": "space-invaders-1978",
                     "name": "Space Invaders (1978)",
-                    "added": 142
+                    "added": 143
                 },
                 {
                     "id": 52418,
                     "slug": "dig-dug-1982",
                     "name": "Dig Dug (1982)",
-                    "added": 126
+                    "added": 127
                 }
             ]
         },
@@ -1649,31 +1649,31 @@
                     "id": 24881,
                     "slug": "pac-man",
                     "name": "Pac-Man",
-                    "added": 788
+                    "added": 790
                 },
                 {
                     "id": 52623,
                     "slug": "tetris-1984",
                     "name": "Tetris (1984)",
-                    "added": 575
+                    "added": 576
                 },
                 {
                     "id": 3802,
                     "slug": "double-dragon",
                     "name": "Double Dragon",
-                    "added": 460
+                    "added": 462
                 },
                 {
                     "id": 52512,
                     "slug": "arcade-archives-donkey-kong",
                     "name": "Donkey Kong",
-                    "added": 404
+                    "added": 405
                 },
                 {
                     "id": 52434,
                     "slug": "mario-bros-1983",
                     "name": "Mario Bros. (1983)",
-                    "added": 297
+                    "added": 298
                 },
                 {
                     "id": 52467,
@@ -1697,7 +1697,7 @@
                     "id": 53138,
                     "slug": "pong-1972",
                     "name": "Pong (1972)",
-                    "added": 115
+                    "added": 116
                 },
                 {
                     "id": 52391,
@@ -1751,19 +1751,19 @@
                     "id": 24881,
                     "slug": "pac-man",
                     "name": "Pac-Man",
-                    "added": 788
+                    "added": 790
                 },
                 {
                     "id": 52512,
                     "slug": "arcade-archives-donkey-kong",
                     "name": "Donkey Kong",
-                    "added": 404
+                    "added": 405
                 },
                 {
                     "id": 52434,
                     "slug": "mario-bros-1983",
                     "name": "Mario Bros. (1983)",
-                    "added": 297
+                    "added": 298
                 },
                 {
                     "id": 28279,
@@ -1847,7 +1847,7 @@
                     "id": 3802,
                     "slug": "double-dragon",
                     "name": "Double Dragon",
-                    "added": 460
+                    "added": 462
                 },
                 {
                     "id": 30501,
@@ -1871,7 +1871,7 @@
                     "id": 53975,
                     "slug": "ninja-gaiden-iii-the-ancient-ship-of-doom",
                     "name": "Ninja Gaiden III: The Ancient Ship of Doom (1991)",
-                    "added": 100
+                    "added": 101
                 }
             ]
         },
@@ -1889,13 +1889,13 @@
                     "id": 52512,
                     "slug": "arcade-archives-donkey-kong",
                     "name": "Donkey Kong",
-                    "added": 404
+                    "added": 405
                 },
                 {
                     "id": 52434,
                     "slug": "mario-bros-1983",
                     "name": "Mario Bros. (1983)",
-                    "added": 297
+                    "added": 298
                 },
                 {
                     "id": 34571,
@@ -1949,19 +1949,19 @@
                     "id": 54285,
                     "slug": "mortal-kombat",
                     "name": "Mortal Kombat",
-                    "added": 1744
+                    "added": 1746
                 },
                 {
                     "id": 53551,
                     "slug": "sonic-the-hedgehog",
                     "name": "Sonic the Hedgehog (1991)",
-                    "added": 1516
+                    "added": 1517
                 },
                 {
                     "id": 2552,
                     "slug": "sonic-the-hedgehog-2",
                     "name": "Sonic the Hedgehog 2",
-                    "added": 1299
+                    "added": 1302
                 },
                 {
                     "id": 28510,
@@ -1991,7 +1991,7 @@
                     "id": 54491,
                     "slug": "quake",
                     "name": "Quake",
-                    "added": 3099
+                    "added": 3100
                 },
                 {
                     "id": 28300,
@@ -2039,7 +2039,7 @@
                     "id": 54285,
                     "slug": "mortal-kombat",
                     "name": "Mortal Kombat",
-                    "added": 1744
+                    "added": 1746
                 },
                 {
                     "id": 29391,
@@ -2051,13 +2051,13 @@
                     "id": 25663,
                     "slug": "earthworm-jim",
                     "name": "Earthworm Jim",
-                    "added": 763
+                    "added": 764
                 },
                 {
                     "id": 45957,
                     "slug": "prince-of-persia-nes",
                     "name": "Prince of Persia (1989)",
-                    "added": 625
+                    "added": 627
                 },
                 {
                     "id": 4377,
@@ -2087,7 +2087,7 @@
                     "id": 29426,
                     "slug": "mortal-kombat-2",
                     "name": "Mortal Kombat 2",
-                    "added": 481
+                    "added": 483
                 },
                 {
                     "id": 5463,
@@ -2099,7 +2099,7 @@
                     "id": 53781,
                     "slug": "darkwing-duck",
                     "name": "Disney's Darkwing Duck",
-                    "added": 239
+                    "added": 240
                 },
                 {
                     "id": 32519,
@@ -2111,7 +2111,7 @@
                     "id": 53975,
                     "slug": "ninja-gaiden-iii-the-ancient-ship-of-doom",
                     "name": "Ninja Gaiden III: The Ancient Ship of Doom (1991)",
-                    "added": 100
+                    "added": 101
                 }
             ]
         },
@@ -2135,13 +2135,13 @@
                     "id": 54285,
                     "slug": "mortal-kombat",
                     "name": "Mortal Kombat",
-                    "added": 1744
+                    "added": 1746
                 },
                 {
                     "id": 4678,
                     "slug": "streets-of-rage-2",
                     "name": "Streets of Rage 2",
-                    "added": 894
+                    "added": 895
                 },
                 {
                     "id": 914,
@@ -2159,7 +2159,7 @@
                     "id": 25663,
                     "slug": "earthworm-jim",
                     "name": "Earthworm Jim",
-                    "added": 763
+                    "added": 764
                 }
             ]
         },
@@ -2177,7 +2177,7 @@
                     "id": 18080,
                     "slug": "half-life",
                     "name": "Half-Life",
-                    "added": 10064
+                    "added": 10068
                 },
                 {
                     "id": 19542,
@@ -2189,19 +2189,19 @@
                     "id": 5159,
                     "slug": "resident-evil-2",
                     "name": "Resident Evil 2 (1998)",
-                    "added": 5878
+                    "added": 5880
                 },
                 {
                     "id": 53341,
                     "slug": "jet-set-radio-2012",
                     "name": "Jet Set Radio",
-                    "added": 5009
+                    "added": 5010
                 },
                 {
                     "id": 20466,
                     "slug": "worms-armageddon",
                     "name": "Worms Armageddon",
-                    "added": 2940
+                    "added": 2941
                 },
                 {
                     "id": 54629,
@@ -2255,7 +2255,7 @@
                     "id": 5498,
                     "slug": "lemmings",
                     "name": "Lemmings",
-                    "added": 334
+                    "added": 335
                 }
             ]
         },
@@ -2327,31 +2327,31 @@
                     "id": 54285,
                     "slug": "mortal-kombat",
                     "name": "Mortal Kombat",
-                    "added": 1744
+                    "added": 1746
                 },
                 {
                     "id": 53551,
                     "slug": "sonic-the-hedgehog",
                     "name": "Sonic the Hedgehog (1991)",
-                    "added": 1516
+                    "added": 1517
                 },
                 {
                     "id": 2552,
                     "slug": "sonic-the-hedgehog-2",
                     "name": "Sonic the Hedgehog 2",
-                    "added": 1299
+                    "added": 1302
                 },
                 {
                     "id": 4678,
                     "slug": "streets-of-rage-2",
                     "name": "Streets of Rage 2",
-                    "added": 894
+                    "added": 895
                 },
                 {
                     "id": 24881,
                     "slug": "pac-man",
                     "name": "Pac-Man",
-                    "added": 788
+                    "added": 790
                 }
             ]
         },
@@ -2369,13 +2369,13 @@
                     "id": 1488,
                     "slug": "metal-slug-3",
                     "name": "METAL SLUG 3",
-                    "added": 2552
+                    "added": 2553
                 },
                 {
                     "id": 14948,
                     "slug": "metal-slug",
                     "name": "METAL SLUG",
-                    "added": 1166
+                    "added": 1167
                 },
                 {
                     "id": 23669,
@@ -2387,7 +2387,7 @@
                     "id": 24881,
                     "slug": "pac-man",
                     "name": "Pac-Man",
-                    "added": 788
+                    "added": 790
                 },
                 {
                     "id": 6256,

@@ -1,9 +1,14 @@
+import configparser
+
+settings = configparser.ConfigParser()
+settings.read('settings.ini')
+
 if __name__ == '__main__':
     from igdb.wrapper import IGDBWrapper
     import json
     import time
 
-    wrapper = IGDBWrapper("0yr0r2fbldsuya8awjkp3r3kxe3znk", "b9hp4t4dbg9ajpzl6ne9qj90ovsmlc")
+    wrapper = IGDBWrapper(settings.get('API_KEYS', 'igdb_client_id'), settings.get('API_KEYS', 'igdb_bearer'))
 
     all_games_data = []  # Initialize an empty list to store all games data
 
