@@ -1,7 +1,7 @@
 import configparser
 
 settings = configparser.ConfigParser()
-settings.read('settings.ini')
+settings.read('../settings.ini')
 
 if __name__ == '__main__':
     from igdb.wrapper import IGDBWrapper

@@ -44,7 +44,7 @@ def save_games_to_json(games, file_path):
 
 if __name__ == '__main__':
     settings = configparser.ConfigParser()
-    settings.read('settings.ini')
+    settings.read('../settings.ini')
 
     api_key = settings.get('API_KEYS', 'rawg_api_key')
     games = fetch_games(api_key, max_pages=300)  # Set max_pages to the number you want, but be mindful of rate limits

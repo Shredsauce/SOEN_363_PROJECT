@@ -3,7 +3,7 @@ import json
 import configparser
 
 settings = configparser.ConfigParser()
-settings.read('settings.ini')
+settings.read('../settings.ini')
 
 
 def fetch_data_from_rawg(api_key):
