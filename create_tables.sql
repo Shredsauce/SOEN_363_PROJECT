@@ -1,6 +1,8 @@
 CREATE TABLE game (
     game_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
+    summary TEXT,
+    url VARCHAR(255),
     release_date DATETIME,
     igdb_id INT UNIQUE,
     rawg_id INT

@@ -86,7 +86,7 @@ def insert_games(connection, cursor):
         'Authorization': "Bearer " + settings.get('API_KEYS', 'igdb_bearer'),
     }
 
-    response = requests.post(url, headers=headers, data='fields name, release_dates.date, platforms, platforms.name, platforms.platform_family,  platforms.platform_family.name; limit '+str(limit_num_games)+';')
+    response = requests.post(url, headers=headers, data='fields name, summary, url, release_dates.date, platforms, platforms.name, platforms.platform_family,  platforms.platform_family.name; limit '+str(limit_num_games)+';')
     if response.status_code == 200:
         games = response.json()
         for game in games:
@@ -103,13 +103,12 @@ def insert_games(connection, cursor):
             release_date = datetime.utcfromtimestamp(release_timestamp).strftime('%Y-%m-%d')
             game_name = game.get('name', 'N/A')
             igdb_id = game['id']
+            summary = game['summary']
+            url = game['url']
 
-            rawg_id = find_rawg_game_id(game_name, release_date)
-
-            if rawg_id < 0: continue
-
-            insert_query = "INSERT INTO game (name, igdb_id, rawg_id, release_date) VALUES (%s, %s, %s, %s);"
-            cursor.execute(insert_query, (game_name, igdb_id, rawg_id, release_date))
+            # Set rawg_id to null for now (instead of making a new request for every IGDB game)
+            insert_query = "INSERT INTO game (name, summary, url, igdb_id, rawg_id, release_date) VALUES (%s, %s, %s, %s, %s, %s);"
+            cursor.execute(insert_query, (game_name, summary, url, igdb_id, None, release_date))
 
             # Keep track of our internal id to use when referencing in the platform_game relationship
             game['internal_game_id'] = cursor.lastrowid
