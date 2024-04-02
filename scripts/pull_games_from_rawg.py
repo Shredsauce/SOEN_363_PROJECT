@@ -1,6 +1,7 @@
 import requests
 import time
 import json
+import configparser
 
 
 def fetch_games(api_key, max_pages=10):
@@ -42,12 +43,14 @@ def save_games_to_json(games, file_path):
 
 
 if __name__ == '__main__':
+    settings = configparser.ConfigParser()
+    settings.read('settings.ini')
 
-    api_key = "0a24c1f906b14571b145d09e787f6ecc"
+    api_key = settings.get('API_KEYS', 'rawg_api_key')
     games = fetch_games(api_key, max_pages=300)  # Set max_pages to the number you want, but be mindful of rate limits
 
     # Specify the path to the JSON file where you want to save the games data
-    json_file_path = "games_data_rawg.json"
+    json_file_path = "generated_json/games_data_rawg.json"
     save_games_to_json(games, json_file_path)
 
 

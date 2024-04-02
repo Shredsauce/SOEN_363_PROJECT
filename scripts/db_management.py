@@ -5,8 +5,8 @@ import requests
 from datetime import datetime
 import time
 
-config_path = 'config.ini'
-create_tables_file = 'create_tables.sql'
+config_path = '../config.ini'
+create_tables_file = '../sql/create_tables.sql'
 db_name = 'soen_project_phase_1'
 
 settings = configparser.ConfigParser()
