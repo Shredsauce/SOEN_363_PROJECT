@@ -35,7 +35,7 @@ if __name__ == '__main__':
         time.sleep(0.5)  # Pause for 1 second before making the next request
 
     # After collecting all data, write it to a single file
-    with open('generated_json/all_platforms_games.json', 'w') as file:
+    with open('../generated_json/all_platforms_games.json', 'w') as file:
         json.dump(all_games_data, file, indent=4)
 
     print("Data for all platforms written to all_platforms_games.json")

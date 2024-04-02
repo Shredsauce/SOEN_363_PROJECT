@@ -4,6 +4,7 @@ import configparser
 import requests
 from datetime import datetime
 import time
+from distutils.util import strtobool
 
 config_path = '../config.ini'
 create_tables_file = '../sql/create_tables.sql'
@@ -25,13 +26,21 @@ def main():
     }
 
     try:
-        connection = create_connection(db_config)
-        drop_existing_db(connection)
-        close_connection(connection)
+        should_drop_existing_db = bool(strtobool(settings.get('DATABASE', 'drop_existing')))
+
+        if should_drop_existing_db:
+            connection = create_connection(db_config)
+            drop_existing_db(connection)
+            close_connection(connection)
 
         connection = create_connection(db_config)
-        create_database(connection)
-        create_tables(connection)
+
+        if database_exists(connection) is False:
+            create_database(connection)
+            create_tables(connection)
+        else:
+            use_table(connection)
+
         populate_database(connection)
         close_connection(connection)
 
@@ -52,6 +61,17 @@ def drop_existing_db(connection):
             raise
 
 
+def database_exists(connection):
+    cursor = connection.cursor()
+    cursor.execute(f"SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '{db_name}';")
+    exists = cursor.fetchone()
+
+    if exists:
+        return True
+    else:
+        return False
+
+
 def create_database(connection):
     cursor = connection.cursor()
     cursor.execute(f"CREATE DATABASE {db_name};")
@@ -59,8 +79,7 @@ def create_database(connection):
 
 def create_tables(connection):
     cursor = connection.cursor()
-
-    cursor.execute(f"USE {db_name};")
+    use_table(connection)
 
     with open(create_tables_file, 'r') as file:
         sql_query = file.read()
@@ -70,9 +89,14 @@ def create_tables(connection):
             print(result.fetchall())
 
 
-def populate_database(connection):
+def use_table(connection):
     cursor = connection.cursor()
     cursor.execute(f"USE {db_name};")
+
+
+def populate_database(connection):
+    cursor = connection.cursor()
+    use_table(connection)
 
     insert_igdb_games(connection, cursor)
 
@@ -80,8 +104,9 @@ def populate_database(connection):
 def insert_igdb_games(connection, cursor):
     num_pages_to_process = int(settings.get('IGDB_SETTINGS', 'num_pages_to_process'))
     limit_num_games = int(settings.get('IGDB_SETTINGS', 'limit_num_games'))
+    start_page = int(settings.get('IGDB_SETTINGS', 'start_page'))
 
-    for i in range(0, num_pages_to_process):
+    for i in range(start_page-1, num_pages_to_process):
         url = "https://api.igdb.com/v4/games/"
 
         headers = {
@@ -118,7 +143,7 @@ def insert_igdb_games(connection, cursor):
                 url = game.get('url', '')
 
                 # Set rawg_id to null for now (instead of making a new request for every IGDB game)
-                insert_query = "INSERT INTO game (name, summary, url, igdb_id, rawg_id, release_date) VALUES (%s, %s, %s, %s, %s, %s);"
+                insert_query = "INSERT IGNORE INTO game (name, summary, url, igdb_id, rawg_id, release_date) VALUES (%s, %s, %s, %s, %s, %s);"
                 cursor.execute(insert_query, (game_name, summary, url, igdb_id, None, release_date))
 
                 # Keep track of our internal id to use when referencing in the platform_game relationship
