@@ -6,6 +6,7 @@ from datetime import datetime
 import time
 from distutils.util import strtobool
 import os
+from Game import Game
 
 os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -98,13 +99,11 @@ def use_table(connection):
 
 
 def populate_database(connection):
-    cursor = connection.cursor()
     use_table(connection)
+    insert_igdb_games(connection)
 
-    insert_igdb_games(connection, cursor)
 
-
-def insert_igdb_games(connection, cursor):
+def insert_igdb_games(connection):
     num_pages_to_process = int(settings.get('IGDB_SETTINGS', 'num_pages_to_process'))
     limit_num_games = int(settings.get('IGDB_SETTINGS', 'limit_num_games'))
     start_page = int(settings.get('IGDB_SETTINGS', 'start_page'))
@@ -128,7 +127,6 @@ def insert_igdb_games(connection, cursor):
         if response.status_code == 200:
             games = response.json()
 
-
             for game in games:
                 release_dates = game.get('release_dates', [])
 
@@ -145,22 +143,32 @@ def insert_igdb_games(connection, cursor):
                 summary = game.get('summary', '')
                 url = game.get('url', '')
 
-                # Set rawg_id to null for now (instead of making a new request for every IGDB game)
-                insert_query = "INSERT IGNORE INTO game (name, summary, url, igdb_id, rawg_id, release_date) VALUES (%s, %s, %s, %s, %s, %s);"
-                cursor.execute(insert_query, (game_name, summary, url, igdb_id, None, release_date))
+                game_obj = Game(game_name, summary, url, release_date, igdb_id, rawg_id=None)
+
+                internal_game_id = insert_game_to_db(connection, game_obj)
 
                 # Keep track of our internal id to use when referencing in the platform_game relationship
-                game['internal_game_id'] = cursor.lastrowid
+                game['internal_game_id'] = internal_game_id
                 insert_genre_info(connection, game)
                 insert_platform_info(connection, game)
-
-                print(f"Inserting: {game_name}")
 
             connection.commit()
         else:
             print(f"Error: {response.status_code}")
 
         time.sleep(0.5)
+
+
+def insert_game_to_db(connection, game_obj):
+    cursor = connection.cursor()
+
+    # Set rawg_id to null for now (instead of making a new request for every IGDB game)
+    insert_query = "INSERT IGNORE INTO game (name, summary, url, igdb_id, rawg_id, release_date) VALUES (%s, %s, %s, %s, %s, %s);"
+    cursor.execute(insert_query, (game_obj.name, game_obj.summary, game_obj.url, game_obj.igdb_id, game_obj.rawg_id, game_obj.release_date))
+
+    print(f"Inserting: {game_obj.name}")
+
+    return cursor.lastrowid
 
 
 def insert_genre_info(connection, game):
