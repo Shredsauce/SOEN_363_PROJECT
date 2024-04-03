@@ -47,17 +47,14 @@ Having genreCOUNT >=2;
 CREATE Trigger Check_Games_Associated
 BEFORE DELETE ON platform
 FOR EACH row
-
 BEGIN
-    DECLARE game_count INT;
-
+    DECLARE game_count INT
     SELECT COUNT(*) into game_count
     FROM game_platform
     where platform_id=OLD.platform_id
-
 if game_count >0 THEN
     SIGNAL SQLSTATE '45000'
-    SET MESSAGE = "Cannot delete platform as there are releases associated to it.";
+    SET MESSAGE = "Cannot delete platform as there are releases associated to it."
     END IF;
 END;
 
@@ -68,10 +65,11 @@ Join person_job PJ ON P.person_id=PJ.person_id
 Join job J on PJ.job_id=J.job_id;
 
 -- Left Join
-Select P.name
-From person P 
-Left join person_job PJ ON P.person_id=PJ.person_id
-Left join job J on PJ.job_id=J.job_id;
+Select *
+From game G
+LEFT JOIN game_genre
+on G.game_id = game_genre.game_id
+ORDER BY G.game_id	
 
 -- Right Join
 Select P.name
