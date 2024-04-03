@@ -6,12 +6,12 @@ from datetime import datetime
 import time
 from distutils.util import strtobool
 
-config_path = '../config.ini'
-create_tables_file = '../sql/create_tables.sql'
+config_path = 'config.ini'
+create_tables_file = 'sql/create_tables.sql'
 db_name = 'soen_project_phase_1'
 
 settings = configparser.ConfigParser()
-settings.read('../settings.ini')
+settings.read('settings.ini')
 
 
 def main():
