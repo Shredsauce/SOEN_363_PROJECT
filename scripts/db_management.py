@@ -6,6 +6,7 @@ from datetime import datetime
 import time
 from distutils.util import strtobool
 import os
+import json
 from Game import Game
 from Genre import Genre
 from Platform import Platform
@@ -105,6 +106,7 @@ def use_table(connection):
 def populate_database(connection):
     use_table(connection)
     insert_igdb_games(connection)
+    insert_rawg_games(connection)
 
 
 def insert_igdb_games(connection):
@@ -113,6 +115,9 @@ def insert_igdb_games(connection):
     start_page = int(settings.get('IGDB_SETTINGS', 'start_page'))
 
     for i in range(start_page-1, num_pages_to_process):
+        page = i+1
+        print(f'Fetching IGDB page {page}')
+
         url = "https://api.igdb.com/v4/games/"
 
         headers = {
@@ -123,8 +128,6 @@ def insert_igdb_games(connection):
         page_offset = i*limit_num_games
 
         request_data = f'fields name, summary, url, genres.name, release_dates.date, platforms, platforms.name, platforms.platform_family, platforms.platform_family.name; limit {str(limit_num_games)}; offset {str(page_offset)};'
-
-        print('New request: '+request_data)
 
         response = requests.post(url, headers=headers, data=request_data)
 
@@ -184,14 +187,83 @@ def insert_igdb_games(connection):
         time.sleep(0.5)
 
 
+def insert_rawg_games(connection):
+    cursor = connection.cursor()
+
+    num_pages_to_process = int(settings.get('RAWG_SETTINGS', 'num_pages_to_process'))
+    limit_num_games = int(settings.get('RAWG_SETTINGS', 'limit_num_games'))
+    start_page = int(settings.get('RAWG_SETTINGS', 'start_page'))
+    rawg_api_key = settings.get('API_KEYS', 'rawg_api_key')
+
+    base_url = "https://api.rawg.io/api/games"
+    params = {
+        "key": rawg_api_key,
+        "page_size": limit_num_games,
+    }
+
+    for page in range(start_page, num_pages_to_process+1):
+        print(f"Fetching RAWG page {page}...")
+        params["page"] = page
+        response = requests.get(base_url, params=params)
+
+        if response.status_code != 200:
+            print(f"Failed to fetch page {page}: HTTP {response.status_code}")
+            break
+
+        data = response.json()
+        games = data.get("results", [])
+
+        for game in games:
+            game_name = str(game.get('name', 'N/A'))
+            rawg_id = game['id']
+            summary = game.get('description', '')
+            url = game.get('website', '')
+            release_date = str(game.get('released'))
+
+            game_obj = Game(game_name, summary, url, release_date, None, rawg_id)
+
+            search_term = f"{game_name}"
+            select_query = "SELECT game_id, name FROM game g WHERE UPPER(g.name) LIKE UPPER(%s) AND YEAR(g.release_date) = YEAR(%s);"
+
+            cursor.execute(select_query, (search_term, release_date))
+
+            found_match = False
+            matched_games = cursor.fetchall()
+            if matched_games:
+                for matched_game in matched_games:
+                    game_id = matched_game[0]
+
+                    print(f"Found IGDB game match: {str(matched_game)}. Set rawg_id to {str(rawg_id)} at game_id {str(game_id)}")
+
+                    update_query = """
+                    UPDATE game g
+                    SET rawg_id = %s
+                    WHERE g.game_id = %s;
+                    """
+
+                    cursor.execute(update_query, (rawg_id, game_id))
+                    connection.commit()
+
+                    found_match = True
+                    break
+
+            # Couldn't find existing IGDB game, insert new
+            if found_match is False:
+                insert_game_to_db(connection, game_obj)
+
+        # Check if there's a 'next' page
+        if "next" not in data or not data["next"]:
+            break
+
+        time.sleep(0.5)
+
+
 def insert_game_to_db(connection, game_obj):
     cursor = connection.cursor()
 
     # Set rawg_id to null for now (instead of making a new request for every IGDB game)
     insert_query = "INSERT IGNORE INTO game (name, summary, url, igdb_id, rawg_id, release_date) VALUES (%s, %s, %s, %s, %s, %s);"
     cursor.execute(insert_query, (game_obj.name, game_obj.summary, game_obj.url, game_obj.igdb_id, game_obj.rawg_id, game_obj.release_date))
-
-    print(f"Inserting: {game_obj.name}")
 
     return cursor.lastrowid
 
@@ -226,6 +298,11 @@ def insert_genre_info(connection, internal_game_id, genres):
 def insert_platform_info(connection, internal_game_id, platforms):
     cursor = connection.cursor()
 
+    platform_mapping_file = 'generated_json/platform_mapping.json'
+
+    with open(platform_mapping_file, 'r') as file:
+        platform_mapping = json.load(file)
+
     for platform in platforms:
         internal_platform_id = -1
         igdb_platform_id = platform.igdb_platform_id
@@ -233,15 +310,28 @@ def insert_platform_info(connection, internal_game_id, platforms):
         platform_name = platform.name
         platform_family = platform.platform_family
 
+        platform_mapping_for_platform = platform_mapping.get(platform_name)
+
+        if platform_mapping_for_platform:
+            igdb_platform_id = igdb_platform_id or platform_mapping_for_platform.get('IGDB_ID')
+            rawg_platform_id = rawg_platform_id or platform_mapping_for_platform.get('RAWG_ID')
+
         try:
-            insert_query = "INSERT IGNORE INTO platform (igdb_platform_id, name) VALUES (%s, %s);"
-            cursor.execute(insert_query, (igdb_platform_id, platform_name))
+            insert_query = "INSERT IGNORE INTO platform (igdb_platform_id, rawg_platform_id, name) VALUES (%s, %s, %s);"
+            cursor.execute(insert_query, (igdb_platform_id, rawg_platform_id, platform_name))
             internal_platform_id = cursor.lastrowid
         except mysql.connector.Error as err:
             if err.errno == 1062:
                 select_query = "SELECT platform_id FROM platform WHERE igdb_platform_id = %s;"
                 cursor.execute(select_query, (igdb_platform_id,))
                 internal_platform_id = cursor.fetchone()[0]
+
+                update_query = """
+                UPDATE platform
+                SET igdb_platform_id = %s, rawg_platform_id = %s
+                WHERE platform_id = %s;
+                """
+                cursor.execute(update_query, (igdb_platform_id, rawg_platform_id, internal_platform_id))
             else:
                 raise
 

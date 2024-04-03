@@ -27,6 +27,7 @@ CREATE TABLE platform (
     platform_id INT AUTO_INCREMENT PRIMARY KEY,
     platform_family_id INT,
     igdb_platform_id INT UNIQUE,
+    rawg_platform_id INT UNIQUE,
     name VARCHAR(255)
 );
 
