@@ -272,9 +272,15 @@ def insert_rawg_games(connection):
                     found_match = True
                     break
 
-            # Couldn't find existing IGDB game, insert new
-            if found_match is False:
-                insert_game_to_db(connection, game_obj)
+            # Alread found match, don't try to insert again
+            if found_match:
+                continue
+
+            internal_game_id = insert_game_to_db(connection, game_obj)
+
+            rawg_genres = game.get('genres')
+            genres = [Genre(None, rawg_genre['id'], rawg_genre['name']) for rawg_genre in rawg_genres] if rawg_genres else []
+            insert_genre_info(connection, internal_game_id, genres)
 
         # Check if there's a 'next' page
         if "next" not in data or not data["next"]:
@@ -293,6 +299,7 @@ def insert_game_to_db(connection, game_obj):
     return cursor.lastrowid
 
 
+# TODO: Use future 'genre_mapping.json' file to avoid duplicate genre entries coming from both IGDB and Rawg
 def insert_genre_info(connection, internal_game_id, genres):
     cursor = connection.cursor()
 
