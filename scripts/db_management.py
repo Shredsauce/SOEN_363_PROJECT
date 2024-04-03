@@ -17,6 +17,7 @@ os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 config_path = 'config.ini'
 create_tables_file = 'sql/create_tables.sql'
+check_games_associated_trigger_file = 'sql/check_games_associated_trigger.sql'
 db_name = 'soen_project_phase_1'
 
 settings = configparser.ConfigParser()
@@ -96,6 +97,30 @@ def create_tables(connection):
     for result in cursor.execute(sql_query, multi=True):
         if result.with_rows:
             print(result.fetchall())
+
+    execute_sql_file(check_games_associated_trigger_file, connection)
+
+
+def execute_sql_file(filename, connection):
+    # Open and read the SQL file
+    with open(filename, 'r') as file:
+        sql_file_content = file.read()
+
+    sql_statements = [stmt for stmt in sql_file_content.split('$$') if not stmt.strip().lower().startswith('delimiter')]
+
+    cursor = connection.cursor()
+    for statement in sql_statements:
+        if statement.strip() == '':
+            continue
+
+        try:
+            cursor.execute(statement.strip())
+            connection.commit()
+        except mysql.connector.Error as err:
+            print(f"An error occurred: {err}")
+            connection.rollback()
+
+    cursor.close()
 
 
 def use_table(connection):
