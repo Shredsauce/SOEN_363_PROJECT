@@ -1,0 +1,58 @@
+{
+    "PC": {
+        "RAWG_ID": 1,
+        "IGDB_ID": null
+    },
+    "PlayStation": {
+        "RAWG_ID": 2,
+        "IGDB_ID": 1
+    },
+    "Xbox": {
+        "RAWG_ID": 3,
+        "IGDB_ID": 2
+    },
+    "iOS": {
+        "RAWG_ID": 4,
+        "IGDB_ID": null
+    },
+    "Android": {
+        "RAWG_ID": 8,
+        "IGDB_ID": null
+    },
+    "Apple Macintosh": {
+        "RAWG_ID": 5,
+        "IGDB_ID": null
+    },
+    "Linux": {
+        "RAWG_ID": 6,
+        "IGDB_ID": 4
+    },
+    "Nintendo": {
+        "RAWG_ID": 7,
+        "IGDB_ID": 5
+    },
+    "Atari": {
+        "RAWG_ID": 9,
+        "IGDB_ID": null
+    },
+    "Commodore / Amiga": {
+        "RAWG_ID": 10,
+        "IGDB_ID": null
+    },
+    "SEGA": {
+        "RAWG_ID": 11,
+        "IGDB_ID": 3
+    },
+    "3DO": {
+        "RAWG_ID": 12,
+        "IGDB_ID": null
+    },
+    "Neo Geo": {
+        "RAWG_ID": 13,
+        "IGDB_ID": null
+    },
+    "Web": {
+        "RAWG_ID": 14,
+        "IGDB_ID": null
+    }
+}

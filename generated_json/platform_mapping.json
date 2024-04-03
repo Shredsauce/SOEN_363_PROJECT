@@ -1,15 +1,23 @@
 {
+    "PC": {
+        "RAWG_ID": 4,
+        "IGDB_ID": 6
+    },
     "PlayStation 5": {
         "RAWG_ID": 187,
         "IGDB_ID": 167
+    },
+    "PlayStation 4": {
+        "RAWG_ID": 18,
+        "IGDB_ID": 48
     },
     "Xbox One": {
         "RAWG_ID": 1,
         "IGDB_ID": 49
     },
-    "PlayStation 4": {
-        "RAWG_ID": 18,
-        "IGDB_ID": 48
+    "Xbox Series S/X": {
+        "RAWG_ID": 186,
+        "IGDB_ID": null
     },
     "Nintendo Switch": {
         "RAWG_ID": 7,
@@ -35,6 +43,10 @@
         "RAWG_ID": 13,
         "IGDB_ID": 159
     },
+    "macOS": {
+        "RAWG_ID": 5,
+        "IGDB_ID": null
+    },
     "Linux": {
         "RAWG_ID": 6,
         "IGDB_ID": 3
@@ -59,6 +71,14 @@
         "RAWG_ID": 27,
         "IGDB_ID": 7
     },
+    "PS Vita": {
+        "RAWG_ID": 19,
+        "IGDB_ID": null
+    },
+    "PSP": {
+        "RAWG_ID": 17,
+        "IGDB_ID": null
+    },
     "Wii U": {
         "RAWG_ID": 10,
         "IGDB_ID": 41
@@ -66,6 +86,10 @@
     "Wii": {
         "RAWG_ID": 11,
         "IGDB_ID": 5
+    },
+    "GameCube": {
+        "RAWG_ID": 105,
+        "IGDB_ID": 21
     },
     "Nintendo 64": {
         "RAWG_ID": 83,
@@ -83,9 +107,25 @@
         "RAWG_ID": 26,
         "IGDB_ID": 33
     },
+    "SNES": {
+        "RAWG_ID": 79,
+        "IGDB_ID": null
+    },
+    "NES": {
+        "RAWG_ID": 49,
+        "IGDB_ID": null
+    },
+    "Classic Macintosh": {
+        "RAWG_ID": 55,
+        "IGDB_ID": null
+    },
     "Apple II": {
         "RAWG_ID": 41,
         "IGDB_ID": 75
+    },
+    "Commodore / Amiga": {
+        "RAWG_ID": 166,
+        "IGDB_ID": null
     },
     "Atari 7800": {
         "RAWG_ID": 28,
@@ -99,13 +139,29 @@
         "RAWG_ID": 23,
         "IGDB_ID": 59
     },
+    "Atari Flashback": {
+        "RAWG_ID": 22,
+        "IGDB_ID": null
+    },
     "Atari 8-bit": {
         "RAWG_ID": 25,
         "IGDB_ID": 65
     },
+    "Atari ST": {
+        "RAWG_ID": 34,
+        "IGDB_ID": null
+    },
     "Atari Lynx": {
         "RAWG_ID": 46,
         "IGDB_ID": 61
+    },
+    "Atari XEGS": {
+        "RAWG_ID": 50,
+        "IGDB_ID": null
+    },
+    "Genesis": {
+        "RAWG_ID": 167,
+        "IGDB_ID": null
     },
     "SEGA Saturn": {
         "RAWG_ID": 107,
@@ -119,8 +175,728 @@
         "RAWG_ID": 117,
         "IGDB_ID": 30
     },
+    "SEGA Master System": {
+        "RAWG_ID": 74,
+        "IGDB_ID": null
+    },
     "Dreamcast": {
         "RAWG_ID": 106,
         "IGDB_ID": 23
+    },
+    "3DO": {
+        "RAWG_ID": 111,
+        "IGDB_ID": null
+    },
+    "Jaguar": {
+        "RAWG_ID": 112,
+        "IGDB_ID": null
+    },
+    "Game Gear": {
+        "RAWG_ID": 77,
+        "IGDB_ID": null
+    },
+    "Neo Geo": {
+        "RAWG_ID": 12,
+        "IGDB_ID": null
+    },
+    "DOS": {
+        "RAWG_ID": null,
+        "IGDB_ID": 13
+    },
+    "Mac": {
+        "RAWG_ID": null,
+        "IGDB_ID": 14
+    },
+    "Commodore C64/128/MAX": {
+        "RAWG_ID": null,
+        "IGDB_ID": 15
+    },
+    "Amiga": {
+        "RAWG_ID": null,
+        "IGDB_ID": 16
+    },
+    "Nintendo Entertainment System": {
+        "RAWG_ID": null,
+        "IGDB_ID": 18
+    },
+    "Super Nintendo Entertainment System": {
+        "RAWG_ID": null,
+        "IGDB_ID": 19
+    },
+    "Amstrad CPC": {
+        "RAWG_ID": null,
+        "IGDB_ID": 25
+    },
+    "ZX Spectrum": {
+        "RAWG_ID": null,
+        "IGDB_ID": 26
+    },
+    "MSX": {
+        "RAWG_ID": null,
+        "IGDB_ID": 27
+    },
+    "Sega Mega Drive/Genesis": {
+        "RAWG_ID": null,
+        "IGDB_ID": 29
+    },
+    "Sega Game Gear": {
+        "RAWG_ID": null,
+        "IGDB_ID": 35
+    },
+    "PlayStation Portable": {
+        "RAWG_ID": null,
+        "IGDB_ID": 38
+    },
+    "N-Gage": {
+        "RAWG_ID": null,
+        "IGDB_ID": 42
+    },
+    "Tapwave Zodiac": {
+        "RAWG_ID": null,
+        "IGDB_ID": 44
+    },
+    "PlayStation Vita": {
+        "RAWG_ID": null,
+        "IGDB_ID": 46
+    },
+    "Virtual Console": {
+        "RAWG_ID": null,
+        "IGDB_ID": 47
+    },
+    "3DO Interactive Multiplayer": {
+        "RAWG_ID": null,
+        "IGDB_ID": 50
+    },
+    "Family Computer Disk System": {
+        "RAWG_ID": null,
+        "IGDB_ID": 51
+    },
+    "Arcade": {
+        "RAWG_ID": null,
+        "IGDB_ID": 52
+    },
+    "MSX2": {
+        "RAWG_ID": null,
+        "IGDB_ID": 53
+    },
+    "Legacy Mobile Device": {
+        "RAWG_ID": null,
+        "IGDB_ID": 55
+    },
+    "WonderSwan": {
+        "RAWG_ID": null,
+        "IGDB_ID": 57
+    },
+    "Super Famicom": {
+        "RAWG_ID": null,
+        "IGDB_ID": 58
+    },
+    "Atari Jaguar": {
+        "RAWG_ID": null,
+        "IGDB_ID": 62
+    },
+    "Atari ST/STE": {
+        "RAWG_ID": null,
+        "IGDB_ID": 63
+    },
+    "Sega Master System/Mark III": {
+        "RAWG_ID": null,
+        "IGDB_ID": 64
+    },
+    "Intellivision": {
+        "RAWG_ID": null,
+        "IGDB_ID": 67
+    },
+    "ColecoVision": {
+        "RAWG_ID": null,
+        "IGDB_ID": 68
+    },
+    "BBC Microcomputer System": {
+        "RAWG_ID": null,
+        "IGDB_ID": 69
+    },
+    "Vectrex": {
+        "RAWG_ID": null,
+        "IGDB_ID": 70
+    },
+    "Commodore VIC-20": {
+        "RAWG_ID": null,
+        "IGDB_ID": 71
+    },
+    "Ouya": {
+        "RAWG_ID": null,
+        "IGDB_ID": 72
+    },
+    "BlackBerry OS": {
+        "RAWG_ID": null,
+        "IGDB_ID": 73
+    },
+    "Windows Phone": {
+        "RAWG_ID": null,
+        "IGDB_ID": 74
+    },
+    "Sharp X1": {
+        "RAWG_ID": null,
+        "IGDB_ID": 77
+    },
+    "Neo Geo MVS": {
+        "RAWG_ID": null,
+        "IGDB_ID": 79
+    },
+    "Neo Geo AES": {
+        "RAWG_ID": null,
+        "IGDB_ID": 80
+    },
+    "Web browser": {
+        "RAWG_ID": null,
+        "IGDB_ID": 82
+    },
+    "SG-1000": {
+        "RAWG_ID": null,
+        "IGDB_ID": 84
+    },
+    "Donner Model 30": {
+        "RAWG_ID": null,
+        "IGDB_ID": 85
+    },
+    "TurboGrafx-16/PC Engine": {
+        "RAWG_ID": null,
+        "IGDB_ID": 86
+    },
+    "Virtual Boy": {
+        "RAWG_ID": null,
+        "IGDB_ID": 87
+    },
+    "Odyssey": {
+        "RAWG_ID": null,
+        "IGDB_ID": 88
+    },
+    "Microvision": {
+        "RAWG_ID": null,
+        "IGDB_ID": 89
+    },
+    "Commodore PET": {
+        "RAWG_ID": null,
+        "IGDB_ID": 90
+    },
+    "Bally Astrocade": {
+        "RAWG_ID": null,
+        "IGDB_ID": 91
+    },
+    "Commodore 16": {
+        "RAWG_ID": null,
+        "IGDB_ID": 93
+    },
+    "Commodore Plus/4": {
+        "RAWG_ID": null,
+        "IGDB_ID": 94
+    },
+    "PDP-1": {
+        "RAWG_ID": null,
+        "IGDB_ID": 95
+    },
+    "PDP-10": {
+        "RAWG_ID": null,
+        "IGDB_ID": 96
+    },
+    "PDP-8": {
+        "RAWG_ID": null,
+        "IGDB_ID": 97
+    },
+    "DEC GT40": {
+        "RAWG_ID": null,
+        "IGDB_ID": 98
+    },
+    "Family Computer": {
+        "RAWG_ID": null,
+        "IGDB_ID": 99
+    },
+    "Analogue electronics": {
+        "RAWG_ID": null,
+        "IGDB_ID": 100
+    },
+    "Ferranti Nimrod Computer": {
+        "RAWG_ID": null,
+        "IGDB_ID": 101
+    },
+    "EDSAC": {
+        "RAWG_ID": null,
+        "IGDB_ID": 102
+    },
+    "PDP-7": {
+        "RAWG_ID": null,
+        "IGDB_ID": 103
+    },
+    "HP 2100": {
+        "RAWG_ID": null,
+        "IGDB_ID": 104
+    },
+    "HP 3000": {
+        "RAWG_ID": null,
+        "IGDB_ID": 105
+    },
+    "SDS Sigma 7": {
+        "RAWG_ID": null,
+        "IGDB_ID": 106
+    },
+    "Call-A-Computer time-shared mainframe computer system": {
+        "RAWG_ID": null,
+        "IGDB_ID": 107
+    },
+    "PDP-11": {
+        "RAWG_ID": null,
+        "IGDB_ID": 108
+    },
+    "CDC Cyber 70": {
+        "RAWG_ID": null,
+        "IGDB_ID": 109
+    },
+    "PLATO": {
+        "RAWG_ID": null,
+        "IGDB_ID": 110
+    },
+    "Imlac PDS-1": {
+        "RAWG_ID": null,
+        "IGDB_ID": 111
+    },
+    "Microcomputer": {
+        "RAWG_ID": null,
+        "IGDB_ID": 112
+    },
+    "OnLive Game System": {
+        "RAWG_ID": null,
+        "IGDB_ID": 113
+    },
+    "Amiga CD32": {
+        "RAWG_ID": null,
+        "IGDB_ID": 114
+    },
+    "Apple IIGS": {
+        "RAWG_ID": null,
+        "IGDB_ID": 115
+    },
+    "Acorn Archimedes": {
+        "RAWG_ID": null,
+        "IGDB_ID": 116
+    },
+    "Philips CD-i": {
+        "RAWG_ID": null,
+        "IGDB_ID": 117
+    },
+    "FM Towns": {
+        "RAWG_ID": null,
+        "IGDB_ID": 118
+    },
+    "Neo Geo Pocket": {
+        "RAWG_ID": null,
+        "IGDB_ID": 119
+    },
+    "Neo Geo Pocket Color": {
+        "RAWG_ID": null,
+        "IGDB_ID": 120
+    },
+    "Sharp X68000": {
+        "RAWG_ID": null,
+        "IGDB_ID": 121
+    },
+    "Nuon": {
+        "RAWG_ID": null,
+        "IGDB_ID": 122
+    },
+    "WonderSwan Color": {
+        "RAWG_ID": null,
+        "IGDB_ID": 123
+    },
+    "SwanCrystal": {
+        "RAWG_ID": null,
+        "IGDB_ID": 124
+    },
+    "PC-8800 Series": {
+        "RAWG_ID": null,
+        "IGDB_ID": 125
+    },
+    "TRS-80": {
+        "RAWG_ID": null,
+        "IGDB_ID": 126
+    },
+    "Fairchild Channel F": {
+        "RAWG_ID": null,
+        "IGDB_ID": 127
+    },
+    "PC Engine SuperGrafx": {
+        "RAWG_ID": null,
+        "IGDB_ID": 128
+    },
+    "Texas Instruments TI-99": {
+        "RAWG_ID": null,
+        "IGDB_ID": 129
+    },
+    "Nintendo PlayStation": {
+        "RAWG_ID": null,
+        "IGDB_ID": 131
+    },
+    "Amazon Fire TV": {
+        "RAWG_ID": null,
+        "IGDB_ID": 132
+    },
+    "Odyssey 2 / Videopac G7000": {
+        "RAWG_ID": null,
+        "IGDB_ID": 133
+    },
+    "Acorn Electron": {
+        "RAWG_ID": null,
+        "IGDB_ID": 134
+    },
+    "Hyper Neo Geo 64": {
+        "RAWG_ID": null,
+        "IGDB_ID": 135
+    },
+    "Neo Geo CD": {
+        "RAWG_ID": null,
+        "IGDB_ID": 136
+    },
+    "New Nintendo 3DS": {
+        "RAWG_ID": null,
+        "IGDB_ID": 137
+    },
+    "VC 4000": {
+        "RAWG_ID": null,
+        "IGDB_ID": 138
+    },
+    "1292 Advanced Programmable Video System": {
+        "RAWG_ID": null,
+        "IGDB_ID": 139
+    },
+    "AY-3-8500": {
+        "RAWG_ID": null,
+        "IGDB_ID": 140
+    },
+    "AY-3-8610": {
+        "RAWG_ID": null,
+        "IGDB_ID": 141
+    },
+    "PC-50X Family": {
+        "RAWG_ID": null,
+        "IGDB_ID": 142
+    },
+    "AY-3-8760": {
+        "RAWG_ID": null,
+        "IGDB_ID": 143
+    },
+    "AY-3-8710": {
+        "RAWG_ID": null,
+        "IGDB_ID": 144
+    },
+    "AY-3-8603": {
+        "RAWG_ID": null,
+        "IGDB_ID": 145
+    },
+    "AY-3-8605": {
+        "RAWG_ID": null,
+        "IGDB_ID": 146
+    },
+    "AY-3-8606": {
+        "RAWG_ID": null,
+        "IGDB_ID": 147
+    },
+    "AY-3-8607": {
+        "RAWG_ID": null,
+        "IGDB_ID": 148
+    },
+    "PC-9800 Series": {
+        "RAWG_ID": null,
+        "IGDB_ID": 149
+    },
+    "Turbografx-16/PC Engine CD": {
+        "RAWG_ID": null,
+        "IGDB_ID": 150
+    },
+    "TRS-80 Color Computer": {
+        "RAWG_ID": null,
+        "IGDB_ID": 151
+    },
+    "FM-7": {
+        "RAWG_ID": null,
+        "IGDB_ID": 152
+    },
+    "Dragon 32/64": {
+        "RAWG_ID": null,
+        "IGDB_ID": 153
+    },
+    "Amstrad PCW": {
+        "RAWG_ID": null,
+        "IGDB_ID": 154
+    },
+    "Tatung Einstein": {
+        "RAWG_ID": null,
+        "IGDB_ID": 155
+    },
+    "Thomson MO5": {
+        "RAWG_ID": null,
+        "IGDB_ID": 156
+    },
+    "NEC PC-6000 Series": {
+        "RAWG_ID": null,
+        "IGDB_ID": 157
+    },
+    "Commodore CDTV": {
+        "RAWG_ID": null,
+        "IGDB_ID": 158
+    },
+    "Windows Mixed Reality": {
+        "RAWG_ID": null,
+        "IGDB_ID": 161
+    },
+    "Oculus VR": {
+        "RAWG_ID": null,
+        "IGDB_ID": 162
+    },
+    "SteamVR": {
+        "RAWG_ID": null,
+        "IGDB_ID": 163
+    },
+    "Daydream": {
+        "RAWG_ID": null,
+        "IGDB_ID": 164
+    },
+    "PlayStation VR": {
+        "RAWG_ID": null,
+        "IGDB_ID": 165
+    },
+    "Pok\u00e9mon mini": {
+        "RAWG_ID": null,
+        "IGDB_ID": 166
+    },
+    "Xbox Series X|S": {
+        "RAWG_ID": null,
+        "IGDB_ID": 169
+    },
+    "Google Stadia": {
+        "RAWG_ID": null,
+        "IGDB_ID": 170
+    },
+    "DUPLICATE Stadia": {
+        "RAWG_ID": null,
+        "IGDB_ID": 203
+    },
+    "Exidy Sorcerer": {
+        "RAWG_ID": null,
+        "IGDB_ID": 236
+    },
+    "Sol-20": {
+        "RAWG_ID": null,
+        "IGDB_ID": 237
+    },
+    "DVD Player": {
+        "RAWG_ID": null,
+        "IGDB_ID": 238
+    },
+    "Blu-ray Player": {
+        "RAWG_ID": null,
+        "IGDB_ID": 239
+    },
+    "Zeebo": {
+        "RAWG_ID": null,
+        "IGDB_ID": 240
+    },
+    "PC-FX": {
+        "RAWG_ID": null,
+        "IGDB_ID": 274
+    },
+    "Satellaview": {
+        "RAWG_ID": null,
+        "IGDB_ID": 306
+    },
+    "Game & Watch": {
+        "RAWG_ID": null,
+        "IGDB_ID": 307
+    },
+    "Playdia": {
+        "RAWG_ID": null,
+        "IGDB_ID": 308
+    },
+    "Evercade": {
+        "RAWG_ID": null,
+        "IGDB_ID": 309
+    },
+    "Sega Pico": {
+        "RAWG_ID": null,
+        "IGDB_ID": 339
+    },
+    "OOParts": {
+        "RAWG_ID": null,
+        "IGDB_ID": 372
+    },
+    "Sinclair ZX81": {
+        "RAWG_ID": null,
+        "IGDB_ID": 373
+    },
+    "Sharp MZ-2200": {
+        "RAWG_ID": null,
+        "IGDB_ID": 374
+    },
+    "Epoch Cassette Vision": {
+        "RAWG_ID": null,
+        "IGDB_ID": 375
+    },
+    "Epoch Super Cassette Vision": {
+        "RAWG_ID": null,
+        "IGDB_ID": 376
+    },
+    "Plug & Play": {
+        "RAWG_ID": null,
+        "IGDB_ID": 377
+    },
+    "Gamate": {
+        "RAWG_ID": null,
+        "IGDB_ID": 378
+    },
+    "Game.com": {
+        "RAWG_ID": null,
+        "IGDB_ID": 379
+    },
+    "Casio Loopy": {
+        "RAWG_ID": null,
+        "IGDB_ID": 380
+    },
+    "Playdate": {
+        "RAWG_ID": null,
+        "IGDB_ID": 381
+    },
+    "Intellivision Amico": {
+        "RAWG_ID": null,
+        "IGDB_ID": 382
+    },
+    "Oculus Quest": {
+        "RAWG_ID": null,
+        "IGDB_ID": 384
+    },
+    "Oculus Rift": {
+        "RAWG_ID": null,
+        "IGDB_ID": 385
+    },
+    "Meta Quest 2": {
+        "RAWG_ID": null,
+        "IGDB_ID": 386
+    },
+    "Oculus Go": {
+        "RAWG_ID": null,
+        "IGDB_ID": 387
+    },
+    "Gear VR": {
+        "RAWG_ID": null,
+        "IGDB_ID": 388
+    },
+    "AirConsole": {
+        "RAWG_ID": null,
+        "IGDB_ID": 389
+    },
+    "PlayStation VR2": {
+        "RAWG_ID": null,
+        "IGDB_ID": 390
+    },
+    "Windows Mobile": {
+        "RAWG_ID": null,
+        "IGDB_ID": 405
+    },
+    "Sinclair QL": {
+        "RAWG_ID": null,
+        "IGDB_ID": 406
+    },
+    "HyperScan": {
+        "RAWG_ID": null,
+        "IGDB_ID": 407
+    },
+    "Mega Duck/Cougar Boy": {
+        "RAWG_ID": null,
+        "IGDB_ID": 408
+    },
+    "Legacy Computer": {
+        "RAWG_ID": null,
+        "IGDB_ID": 409
+    },
+    "Atari Jaguar CD": {
+        "RAWG_ID": null,
+        "IGDB_ID": 410
+    },
+    "Handheld Electronic LCD": {
+        "RAWG_ID": null,
+        "IGDB_ID": 411
+    },
+    "Leapster": {
+        "RAWG_ID": null,
+        "IGDB_ID": 412
+    },
+    "Leapster Explorer/LeadPad Explorer": {
+        "RAWG_ID": null,
+        "IGDB_ID": 413
+    },
+    "LeapTV": {
+        "RAWG_ID": null,
+        "IGDB_ID": 414
+    },
+    "Watara/QuickShot Supervision": {
+        "RAWG_ID": null,
+        "IGDB_ID": 415
+    },
+    "Nintendo 64DD": {
+        "RAWG_ID": null,
+        "IGDB_ID": 416
+    },
+    "Palm OS": {
+        "RAWG_ID": null,
+        "IGDB_ID": 417
+    },
+    "Arduboy": {
+        "RAWG_ID": null,
+        "IGDB_ID": 438
+    },
+    "V.Smile": {
+        "RAWG_ID": null,
+        "IGDB_ID": 439
+    },
+    "Visual Memory Unit / Visual Memory System": {
+        "RAWG_ID": null,
+        "IGDB_ID": 440
+    },
+    "PocketStation": {
+        "RAWG_ID": null,
+        "IGDB_ID": 441
+    },
+    "Meta Quest 3": {
+        "RAWG_ID": null,
+        "IGDB_ID": 471
+    },
+    "visionOS": {
+        "RAWG_ID": null,
+        "IGDB_ID": 472
+    },
+    "Arcadia 2001": {
+        "RAWG_ID": null,
+        "IGDB_ID": 473
+    },
+    "Gizmondo": {
+        "RAWG_ID": null,
+        "IGDB_ID": 474
+    },
+    "R-Zone": {
+        "RAWG_ID": null,
+        "IGDB_ID": 475
+    },
+    "Apple Pippin": {
+        "RAWG_ID": null,
+        "IGDB_ID": 476
+    },
+    "Panasonic Jungle": {
+        "RAWG_ID": null,
+        "IGDB_ID": 477
+    },
+    "Panasonic M2": {
+        "RAWG_ID": null,
+        "IGDB_ID": 478
+    },
+    "Terebikko / See 'n Say Video Phone": {
+        "RAWG_ID": null,
+        "IGDB_ID": 479
     }
 }
