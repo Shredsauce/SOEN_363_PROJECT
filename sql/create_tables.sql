@@ -33,6 +33,7 @@ CREATE TABLE platform (
 CREATE TABLE platform_family (
     platform_family_id INT AUTO_INCREMENT PRIMARY KEY,
     igdb_platform_family_id INT UNIQUE,
+    rawg_platform_family_id INT UNIQUE,
     name VARCHAR(255)
 );
 

@@ -8,6 +8,9 @@ from distutils.util import strtobool
 import os
 from Game import Game
 from Genre import Genre
+from Platform import Platform
+from PlatformFamily import PlatformFamily
+
 
 os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -146,17 +149,33 @@ def insert_igdb_games(connection):
 
                 game_obj = Game(game_name, summary, url, release_date, igdb_id, rawg_id=None)
 
+                # Keep track of our internal id to use when referencing in the game_genre and game_platform relationships
                 internal_game_id = insert_game_to_db(connection, game_obj)
-
-                # Keep track of our internal id to use when referencing in the platform_game relationship
-                game['internal_game_id'] = internal_game_id
 
                 igdb_genres = game.get('genres')
                 genres = [Genre(igdb_genre['id'], None, igdb_genre['name']) for igdb_genre in igdb_genres] if igdb_genres else []
                 insert_genre_info(connection, internal_game_id, genres)
 
-                # insert_genre_info(connection, game)
-                insert_platform_info(connection, game)
+                igdb_platforms = game.get('platforms')
+
+                platforms = []
+                if igdb_platforms:
+                    for igdb_platform in igdb_platforms:
+                        platform_family = None
+
+                        if 'platform_family' in igdb_platform and igdb_platform['platform_family']:
+                            pf = igdb_platform['platform_family']
+                            igdb_platform_family_id = pf.get('id', None)
+
+                            rawg_platform_family_id = None
+                            platform_family_name = pf.get('name', None)
+
+                            platform_family = PlatformFamily(igdb_platform_family_id, rawg_platform_family_id, platform_family_name)
+
+                        platform = Platform(igdb_platform['id'], None, igdb_platform['name'], platform_family)
+                        platforms.append(platform)
+
+                insert_platform_info(connection, internal_game_id, platforms)
 
             connection.commit()
         else:
@@ -204,18 +223,15 @@ def insert_genre_info(connection, internal_game_id, genres):
     connection.commit()
 
 
-def insert_platform_info(connection, game):
+def insert_platform_info(connection, internal_game_id, platforms):
     cursor = connection.cursor()
 
-    internal_game_id = game['internal_game_id']
-
-    igdb_platforms = game['platforms']
-
-    for igdb_platform in igdb_platforms:
+    for platform in platforms:
         internal_platform_id = -1
-        igdb_platform_id = igdb_platform['id']
-        platform_name = igdb_platform['name']
-        platform_family = igdb_platform.get('platform_family', None)
+        igdb_platform_id = platform.igdb_platform_id
+        rawg_platform_id = platform.rawg_platform_id
+        platform_name = platform.name
+        platform_family = platform.platform_family
 
         try:
             insert_query = "INSERT IGNORE INTO platform (igdb_platform_id, name) VALUES (%s, %s);"
@@ -230,12 +246,13 @@ def insert_platform_info(connection, game):
                 raise
 
         if platform_family:
-            igdb_platform_family_id = igdb_platform['platform_family']['id']
-            platform_family_name = igdb_platform['platform_family']['name']
+            igdb_platform_family_id = platform_family.igdb_platform_family_id
+            rawg_platform_family_id = platform_family.rawg_platform_family_id
+            platform_family_name = platform_family.name
 
             try:
-                insert_query = "INSERT IGNORE INTO platform_family (igdb_platform_family_id, name) VALUES (%s, %s);"
-                cursor.execute(insert_query, (igdb_platform_family_id, platform_family_name))
+                insert_query = "INSERT IGNORE INTO platform_family (igdb_platform_family_id, rawg_platform_family_id, name) VALUES (%s, %s, %s);"
+                cursor.execute(insert_query, (igdb_platform_family_id, rawg_platform_family_id, platform_family_name))
                 internal_platform_family_id = cursor.lastrowid
 
                 insert_query = "INSERT INTO platform_platform_family (platform_family_id, platform_id) VALUES (%s, %s);"
