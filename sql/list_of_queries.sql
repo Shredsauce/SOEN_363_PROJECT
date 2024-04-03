@@ -33,6 +33,34 @@ From game G
 Join game_platform GP ON G.game_id=GP.game_id
 Join platform P on P.platform_id=GP.platform_id;
 
+-- List all genres
+SELECT * 
+from genre;
+
+--List all games with at least 2 genres
+SELECT game_id, count(GG.genre_id) as genreCOUNT
+FROM game_genre GG
+Group by game_id
+Having genreCOUNT >=2;
+
+--Trigger to check if there are games associated to a platform before deleting it
+CREATE Trigger Check_Games_Associated
+BEFORE DELETE ON platform
+FOR EACH row
+
+BEGIN
+    DECLARE game_count INT;
+
+    SELECT COUNT(*) into game_count
+    FROM game_platform
+    where platform_id=OLD.platform_id
+
+if game_count >0 THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE = "Cannot delete platform as there are releases associated to it.";
+    END IF;
+END;
+
 -- Inner Join
 Select P.name
 From person P 
