@@ -5,13 +5,16 @@ import requests
 from datetime import datetime
 import time
 from distutils.util import strtobool
+import os
 
-config_path = '../config.ini'
-create_tables_file = '../sql/create_tables.sql'
+os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+config_path = 'config.ini'
+create_tables_file = 'sql/create_tables.sql'
 db_name = 'soen_project_phase_1'
 
 settings = configparser.ConfigParser()
-settings.read('../settings.ini')
+settings.read('settings.ini')
 
 
 def main():

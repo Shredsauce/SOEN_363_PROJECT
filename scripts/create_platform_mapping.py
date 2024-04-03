@@ -1,5 +1,7 @@
 import json
+import os
 
+os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def load_json_data(filename):
     """Load JSON data from a file."""
@@ -34,14 +36,14 @@ def create_platform_mapping(rawg_data, igdb_data):
 
 if __name__ == "__main__":
     # Load platform data from JSON files
-    rawg_platforms = load_json_data('../generated_json/platforms_data_rawg.json')  # Adjust the path as necessary
-    igdb_platforms = load_json_data('../generated_json/platforms_data_igdb.json')  # Adjust the path as necessary
+    rawg_platforms = load_json_data('generated_json/platforms_data_rawg.json')  # Adjust the path as necessary
+    igdb_platforms = load_json_data('generated_json/platforms_data_igdb.json')  # Adjust the path as necessary
 
     # Create the platform mapping
     mapping = create_platform_mapping(rawg_platforms, igdb_platforms)
 
     # Save the mapping to a JSON file
-    with open('../generated_json/platform_mapping.json', 'w', encoding='utf-8') as file:
+    with open('generated_json/platform_mapping.json', 'w', encoding='utf-8') as file:
         json.dump(mapping, file, indent=4)
 
     print("Platform mapping saved to platform_mapping.json")

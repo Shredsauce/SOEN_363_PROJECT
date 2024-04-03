@@ -1,9 +1,11 @@
 import requests
 import json
 import configparser
+import os
 
+os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 settings = configparser.ConfigParser()
-settings.read('../settings.ini')
+settings.read('settings.ini')
 
 
 def fetch_data_from_rawg(api_key):
@@ -13,7 +15,7 @@ def fetch_data_from_rawg(api_key):
     platforms_url = f"{base_url}/platforms?key={api_key}"
     platforms_response = requests.get(platforms_url)
     platforms_data = platforms_response.json()
-    with open('../generated_json/platforms_data_rawg.json', 'w') as f:
+    with open('generated_json/platforms_data_rawg.json', 'w') as f:
         json.dump(platforms_data, f, indent=4)
     print("Platforms data saved to platforms_data.json")
 
@@ -21,7 +23,7 @@ def fetch_data_from_rawg(api_key):
     games_url = f"{base_url}/games?key={api_key}&dates=2019-09-01,2019-09-30&platforms=18,1,7"
     games_response = requests.get(games_url)
     games_data = games_response.json()
-    with open('../generated_json/games_data.json', 'w') as f:
+    with open('generated_json/games_data.json', 'w') as f:
         json.dump(games_data, f, indent=4)
     print("Games data saved to games_data.json")
 
