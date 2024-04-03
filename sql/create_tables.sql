@@ -54,21 +54,12 @@ CREATE TABLE game_platform (
     FOREIGN KEY (platform_id) REFERENCES platform(platform_id)
 );
 
-CREATE TABLE person (
-    person_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
-    rawg_id VARCHAR(255)
-);
+CREATE TABLE platform_logo {
+    platform_logo_id INT AUTO_INCREMENT PRIMARY KEY,
+    image_url url,
+    height int,
+    width int,
+    platform_id INT,
+    FOREIGN KEY (platform_id) REFERENCES platform(platform_id)
+};
 
-CREATE TABLE job (
-    job_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255)
-);
-
-CREATE TABLE person_job (
-    person_job_id INT AUTO_INCREMENT PRIMARY KEY,
-    job_id INT,
-    person_id INT,
-    FOREIGN KEY (job_id) REFERENCES job(job_id),
-    FOREIGN KEY (person_id) REFERENCES person(person_id)  
-);
