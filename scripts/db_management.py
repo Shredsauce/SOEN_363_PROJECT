@@ -7,6 +7,7 @@ import time
 from distutils.util import strtobool
 import os
 from Game import Game
+from Genre import Genre
 
 os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -149,7 +150,12 @@ def insert_igdb_games(connection):
 
                 # Keep track of our internal id to use when referencing in the platform_game relationship
                 game['internal_game_id'] = internal_game_id
-                insert_genre_info(connection, game)
+
+                igdb_genres = game.get('genres')
+                genres = [Genre(igdb_genre['id'], None, igdb_genre['name']) for igdb_genre in igdb_genres] if igdb_genres else []
+                insert_genre_info(connection, internal_game_id, genres)
+
+                # insert_genre_info(connection, game)
                 insert_platform_info(connection, game)
 
             connection.commit()
@@ -171,29 +177,23 @@ def insert_game_to_db(connection, game_obj):
     return cursor.lastrowid
 
 
-def insert_genre_info(connection, game):
+def insert_genre_info(connection, internal_game_id, genres):
     cursor = connection.cursor()
 
-    internal_game_id = game['internal_game_id']
-
-    igdb_genres = game.get('genres')
-
-    if igdb_genres is None:
-        return
-
-    for igdb_genre in igdb_genres:
-        internal_genre_id = -1
-        igdb_genre_id = igdb_genre['id']
-        genre_name = igdb_genre['name']
-
+    for genre in genres:
         try:
-            insert_query = "INSERT IGNORE INTO genre (igdb_genre_id, name) VALUES (%s, %s);"
-            cursor.execute(insert_query, (igdb_genre_id, genre_name))
+            insert_query = "INSERT IGNORE INTO genre (igdb_genre_id, rawg_genre_id, name) VALUES (%s, %s, %s);"
+            cursor.execute(insert_query, (genre.igdb_genre_id, genre.rawg_genre_id, genre.name))
             internal_genre_id = cursor.lastrowid
         except mysql.connector.Error as err:
             if err.errno == 1062:
-                select_query = "SELECT genre_id FROM genre WHERE igdb_genre_id = %s;"
-                cursor.execute(select_query, (igdb_genre_id,))
+                # Entry already exists, select its internal genre_id
+                select_query = """
+                SELECT genre_id FROM genre 
+                WHERE (igdb_genre_id = %s AND %s IS NOT NULL) 
+                OR (rawg_genre_id = %s AND %s IS NOT NULL);
+                """
+                cursor.execute(select_query, (genre.igdb_genre_id, genre.igdb_genre_id, genre.rawg_genre_id, genre.rawg_genre_id))
                 internal_genre_id = cursor.fetchone()[0]
             else:
                 raise

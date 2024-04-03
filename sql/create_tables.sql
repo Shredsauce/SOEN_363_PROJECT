@@ -11,6 +11,7 @@ CREATE TABLE game (
 CREATE TABLE genre (
     genre_id INT AUTO_INCREMENT PRIMARY KEY,
     igdb_genre_id INT UNIQUE,
+    rawg_genre_id INT UNIQUE,
     name VARCHAR(255)
 );
 

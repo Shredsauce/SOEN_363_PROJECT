@@ -16,6 +16,12 @@ Select platform_id, count(GP.game_id)
 From game_platform GP
 Group by platform_id;
 
+-- List the number of games per platform (Include the platform name)
+Select p.platform_id, p.name, count(gp.game_id)
+From game_platform gp
+JOIN platform p ON gp.platform_id = p.platform_id
+Group by platform_id;
+
 -- List all the platforms that have at least 2 games
 Select platform_id, count(GP.game_id) as gameCount
 From game_platform GP
