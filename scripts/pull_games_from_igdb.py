@@ -1,6 +1,7 @@
 import configparser
 import os
 
+
 os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 settings = configparser.ConfigParser()
 settings.read('settings.ini')

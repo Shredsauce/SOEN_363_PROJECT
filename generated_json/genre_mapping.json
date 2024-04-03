@@ -1,0 +1,138 @@
+{
+    "Indie": {
+        "RAWG_ID": 51,
+        "IGDB_ID": 32
+    },
+    "Adventure": {
+        "RAWG_ID": 3,
+        "IGDB_ID": 31
+    },
+    "Strategy": {
+        "RAWG_ID": 10,
+        "IGDB_ID": 15
+    },
+    "Shooter": {
+        "RAWG_ID": 2,
+        "IGDB_ID": 5
+    },
+    "Puzzle": {
+        "RAWG_ID": 7,
+        "IGDB_ID": 9
+    },
+    "Arcade": {
+        "RAWG_ID": 11,
+        "IGDB_ID": 33
+    },
+    "Racing": {
+        "RAWG_ID": 1,
+        "IGDB_ID": 10
+    },
+    "Fighting": {
+        "RAWG_ID": 6,
+        "IGDB_ID": 4
+    },
+    "Action": {
+        "RAWG_ID": 4,
+        "IGDB_ID": null
+    },
+    "RPG": {
+        "RAWG_ID": 5,
+        "IGDB_ID": null
+    },
+    "Casual": {
+        "RAWG_ID": 40,
+        "IGDB_ID": null
+    },
+    "Simulation": {
+        "RAWG_ID": 14,
+        "IGDB_ID": null
+    },
+    "Platformer": {
+        "RAWG_ID": 83,
+        "IGDB_ID": null
+    },
+    "Massively Multiplayer": {
+        "RAWG_ID": 59,
+        "IGDB_ID": null
+    },
+    "Sports": {
+        "RAWG_ID": 15,
+        "IGDB_ID": null
+    },
+    "Family": {
+        "RAWG_ID": 19,
+        "IGDB_ID": null
+    },
+    "Board Games": {
+        "RAWG_ID": 28,
+        "IGDB_ID": null
+    },
+    "Educational": {
+        "RAWG_ID": 34,
+        "IGDB_ID": null
+    },
+    "Card": {
+        "RAWG_ID": 17,
+        "IGDB_ID": null
+    },
+    "Point-and-click": {
+        "RAWG_ID": null,
+        "IGDB_ID": 2
+    },
+    "Music": {
+        "RAWG_ID": null,
+        "IGDB_ID": 7
+    },
+    "Platform": {
+        "RAWG_ID": null,
+        "IGDB_ID": 8
+    },
+    "Real Time Strategy (RTS)": {
+        "RAWG_ID": null,
+        "IGDB_ID": 11
+    },
+    "Role-playing (RPG)": {
+        "RAWG_ID": null,
+        "IGDB_ID": 12
+    },
+    "Simulator": {
+        "RAWG_ID": null,
+        "IGDB_ID": 13
+    },
+    "Sport": {
+        "RAWG_ID": null,
+        "IGDB_ID": 14
+    },
+    "Turn-based strategy (TBS)": {
+        "RAWG_ID": null,
+        "IGDB_ID": 16
+    },
+    "Tactical": {
+        "RAWG_ID": null,
+        "IGDB_ID": 24
+    },
+    "Hack and slash/Beat 'em up": {
+        "RAWG_ID": null,
+        "IGDB_ID": 25
+    },
+    "Quiz/Trivia": {
+        "RAWG_ID": null,
+        "IGDB_ID": 26
+    },
+    "Pinball": {
+        "RAWG_ID": null,
+        "IGDB_ID": 30
+    },
+    "Visual Novel": {
+        "RAWG_ID": null,
+        "IGDB_ID": 34
+    },
+    "Card & Board Game": {
+        "RAWG_ID": null,
+        "IGDB_ID": 35
+    },
+    "MOBA": {
+        "RAWG_ID": null,
+        "IGDB_ID": 36
+    }
+}
