@@ -11,7 +11,7 @@ def fetch_games(api_key, max_pages=10):
     headers = {"User-Agent": "Python RAWG API Client"}
     params = {
         "key": api_key,
-        "page_size": 40,  # Adjust based on the maximum allowed by the API or your preference
+        "page_size": 40,
     }
 
     games = []
@@ -33,7 +33,7 @@ def fetch_games(api_key, max_pages=10):
             break
 
         # Be respectful to the API's rate limit
-        time.sleep(1)  # Adjust this delay as needed or based on the API's guidelines
+        time.sleep(1)
 
     return games
 
@@ -49,9 +49,9 @@ if __name__ == '__main__':
     settings.read('settings.ini')
 
     api_key = settings.get('API_KEYS', 'rawg_api_key')
-    games = fetch_games(api_key, max_pages=2)  # Set max_pages to the number you want, but be mindful of rate limits
+    games = fetch_games(api_key, max_pages=2)
 
-    # Specify the path to the JSON file where you want to save the games data
+    # Specify the path to the JSON file to save the games data
     json_file_path = "generated_json/games_data_rawg.json"
     save_games_to_json(games, json_file_path)
 

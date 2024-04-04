@@ -35,7 +35,7 @@ def fetch_genres(api_key):
 
         page += 1
         # Be respectful to the API's rate limit
-        time.sleep(1)  # Adjust this delay as needed or based on the API's guidelines
+        time.sleep(1)
 
     return genres
 
@@ -51,8 +51,7 @@ if __name__ == '__main__':
     settings.read('settings.ini')
 
     api_key = settings.get('API_KEYS', 'rawg_api_key')
-    genres = fetch_genres(api_key)  # Fetch as many genres as exist in the database
+    genres = fetch_genres(api_key)
 
-    # Specify the path to the JSON file where you want to save the genres data
     json_file_path = "generated_json/genres_data_rawg.json"
     save_genres_to_json(genres, json_file_path)

@@ -5,12 +5,12 @@ import os
 os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def load_json_data(filename):
-    """Load JSON data from a file."""
+
     with open(filename, 'r', encoding='utf-8') as file:
         return json.load(file)
 
 def create_genre_mapping(rawg_data, igdb_data):
-    """Create a mapping of genre names to their IDs in both RAWG and IGDB, including unmatched genres."""
+    # Create a mapping of genre names to their IDs in both RAWG and IGDB, including unmatched genres.
     genre_mapping = {}
     rawg_matched = set()
     igdb_matched = set()
@@ -53,7 +53,7 @@ def create_genre_mapping(rawg_data, igdb_data):
     return genre_mapping
 
 if __name__ == "__main__":
-    # Load genre data from JSON files
+
     rawg_genres = load_json_data('generated_json/genres_data_rawg.json')
     igdb_genres = load_json_data('generated_json/genres_data_igdb.json')
 

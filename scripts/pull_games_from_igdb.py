@@ -15,7 +15,6 @@ if __name__ == '__main__':
 
     all_games_data = []  # Initialize an empty list to store all games data
 
-    # Loop through all platform numbers from 3 to 200
     for platform_number in range(3, 480):
         print(f"Fetching data for platform {platform_number}...")
         # JSON API request for the current platform

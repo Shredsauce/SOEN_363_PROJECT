@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
     # Initially, we don't know the total number of platforms. Set a high enough offset to ensure we get all data.
     offset = 0
-    limit = 500  # Adjust the limit as per the API guidelines
+    limit = 500
     total_fetched = 0
 
     while True:

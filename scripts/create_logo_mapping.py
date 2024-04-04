@@ -1,11 +1,9 @@
 if __name__ == '__main__':
     import json
 
-    # Load platforms data
     with open('../generated_json/all_platforms_with_logos_igdb.json', 'r') as file:
         platforms_data = json.load(file)
 
-    # Load logos data
     with open('../generated_json/all_platform_logos_igdb.json', 'r') as file:
         logos_data = json.load(file)
 
