@@ -19,7 +19,7 @@ CREATE TABLE game_genre (
     game_id INT,
     genre_id INT,
     FOREIGN KEY (game_id) REFERENCES game(game_id),
-    FOREIGN KEY (genre_id) REFERENCES genre(genre_id)
+    FOREIGN KEY (genre_id) REFERENCES genre(genre_id),
     PRIMARY KEY (game_id, genre_id)
 );
 
