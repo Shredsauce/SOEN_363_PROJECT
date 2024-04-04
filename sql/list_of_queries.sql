@@ -65,10 +65,10 @@ if game_count >0 THEN
 END;
 
 -- Inner Join
-Select P.name
-From person P 
-Join person_job PJ ON P.person_id=PJ.person_id
-Join job J on PJ.job_id=J.job_id;
+Select G.game_id, G.name, G.release_date, Ge.name
+From game G 
+Join game_genre GG ON G.game_id=GG.game_id
+Join genre Ge on GG.genre_id=Ge.genre_id;
 
 -- Left Join
 Select *
@@ -78,21 +78,21 @@ on G.game_id = game_genre.game_id
 ORDER BY G.game_id	
 
 -- Right Join
-Select P.name
-From person P 
-Right join person_job PJ ON P.person_id=PJ.person_id
-Right join job J on PJ.job_id=J.job_id;
+Select G.game_id, Ge.name
+From game G 
+Right join game_genre GG ON G.game_id=GG.game_id
+Right join genre Ge on GG.genre_id=Ge.genre_id;
 
 -- Full Join (MySQL doeesn't support full join)
-(Select P.name
-From person P 
-Left join person_job PJ ON P.person_id=PJ.person_id
-Left join job J on PJ.job_id=J.job_id)
+(Select G.game_id, G.name, G.summary, Ge.genre_id, Ge.name
+From game G 
+Left join game_genre GG ON G.game_id=GG.game_id
+Left join genre Ge on GG.genre_id=Ge.genre_id)
 Union all
-(Select P.name
-From person P 
-Right join person_job PJ ON P.person_id=PJ.person_id
-Right join job J on PJ.job_id=J.job_id);
+(Select G.game_id, G.name, G.summary, Ge.genre_id, Ge.name
+From game G 
+Right join game_genre GG ON G.game_id=GG.game_id
+Right join genre Ge on GG.genre_id=Ge.genre_id);
 
 -- Correlated Query 1. Find the game name that was the most recently released.
 Select G1.name, G1.release_date
