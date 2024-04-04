@@ -16,11 +16,11 @@ CREATE TABLE genre (
 );
 
 CREATE TABLE game_genre (
-    game_genre_id INT AUTO_INCREMENT PRIMARY KEY,
     game_id INT,
     genre_id INT,
     FOREIGN KEY (game_id) REFERENCES game(game_id),
     FOREIGN KEY (genre_id) REFERENCES genre(genre_id)
+    PRIMARY KEY (game_id, genre_id)
 );
 
 CREATE TABLE platform (
@@ -39,11 +39,11 @@ CREATE TABLE platform_family (
 );
 
 CREATE TABLE game_platform (
-    game_platform_id INT AUTO_INCREMENT PRIMARY KEY,
     game_id INT,
     platform_id INT,
     FOREIGN KEY (game_id) REFERENCES game(game_id),
-    FOREIGN KEY (platform_id) REFERENCES platform(platform_id)
+    FOREIGN KEY (platform_id) REFERENCES platform(platform_id),
+    PRIMARY KEY (game_id, platform_id)
 );
 
 CREATE TABLE platform_logo (
@@ -54,4 +54,3 @@ CREATE TABLE platform_logo (
     platform_id INT,
     PRIMARY KEY (platform_logo_id, platform_id)
 );
-
