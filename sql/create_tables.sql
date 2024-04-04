@@ -55,11 +55,11 @@ CREATE TABLE game_platform (
 );
 
 CREATE TABLE platform_logo (
-    platform_logo_id INT AUTO_INCREMENT PRIMARY KEY,
+    platform_logo_id INT, 
     image_url TEXT,
     height int,
     width int,
     platform_id INT,
-    FOREIGN KEY (platform_id) REFERENCES platform(platform_id)
-);
+    PRIMARY KEY (platform_logo_id, platform_id)
+    );
 
