@@ -38,14 +38,6 @@ CREATE TABLE platform_family (
     name VARCHAR(255)
 );
 
-CREATE TABLE platform_platform_family (
-    platform_platform_family_id INT AUTO_INCREMENT PRIMARY KEY,
-    platform_family_id INT,
-    platform_id INT,
-    FOREIGN KEY (platform_family_id) REFERENCES platform_family(platform_family_id),
-    FOREIGN KEY (platform_id) REFERENCES platform(platform_id)
-);
-
 CREATE TABLE game_platform (
     game_platform_id INT AUTO_INCREMENT PRIMARY KEY,
     game_id INT,

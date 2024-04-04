@@ -22,6 +22,11 @@ From game_platform gp
 JOIN platform p ON gp.platform_id = p.platform_id
 Group by platform_id;
 
+-- List all games that have both a Rawg ID and IGDB ID
+SELECT *
+FROM game
+WHERE rawg_id IS NOT NULL AND igdb_id IS NOT NULL;
+
 -- List all the platforms that have at least 2 games
 Select platform_id, count(GP.game_id) as gameCount
 From game_platform GP
@@ -188,6 +193,14 @@ CROSS JOIN
 EXCEPT
 (SELECT game_id, platform_id FROM game_platform)) AS ExceptResult
 );
+
+-- Equivalent query that runs in MySQL (doesn't use EXCEPT)
+SELECT gp.game_id, g.name
+FROM game_platform gp
+JOIN game g ON g.game_id = gp.game_id
+GROUP BY gp.game_id
+HAVING COUNT(DISTINCT gp.platform_id) = (SELECT COUNT(*) FROM platform);
+
 -- Division using a correlated nested query using NOT EXISTS and EXCEPT (what game is on all platforms)
 SELECT * FROM game_platform AS gp
 WHERE NOT EXISTS (

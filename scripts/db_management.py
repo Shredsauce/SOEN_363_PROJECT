@@ -23,6 +23,14 @@ db_name = 'soen_project_phase_1'
 settings = configparser.ConfigParser()
 settings.read('settings.ini')
 
+platform_mapping_file = 'generated_json/platform_mapping.json'
+with open(platform_mapping_file, 'r') as file:
+    platform_mapping = json.load(file)
+
+platform_family_mapping_file = 'generated_json/platform_family_mapping.json'
+with open(platform_family_mapping_file, 'r') as file:
+    platform_family_mapping = json.load(file)
+
 
 def main():
     config = configparser.ConfigParser()
@@ -214,6 +222,11 @@ def insert_igdb_games(connection):
 
 # TODO: Need to insert platform info (mapped with IGDB)
 def insert_rawg_games(connection):
+    platform_parents_data_file = 'generated_json/platform_parents_data_rawg.json'
+
+    with open(platform_parents_data_file, 'r') as file:
+        platform_parents_data = json.load(file)
+
     cursor = connection.cursor()
 
     num_pages_to_process = int(settings.get('RAWG_SETTINGS', 'num_pages_to_process'))
@@ -273,7 +286,7 @@ def insert_rawg_games(connection):
                     found_match = True
                     break
 
-            # Alread found match, don't try to insert again
+            # Already found match, don't try to insert again
             if found_match:
                 continue
 
@@ -283,12 +296,37 @@ def insert_rawg_games(connection):
             genres = [Genre(None, rawg_genre['id'], rawg_genre['name']) for rawg_genre in rawg_genres] if rawg_genres else []
             insert_genre_info(connection, internal_game_id, genres)
 
+            rawg_platforms = game.get('platforms')
+            rawg_platform_families = game.get('parent_platforms')
+
+            platforms = []
+            if rawg_platforms:
+                for rawg_platform in rawg_platforms:
+                    rawg_platform_id = rawg_platform['platform']['id']
+                    platform_name = rawg_platform['platform']['name']
+
+                    rawg_platform_family = find_rawg_platform_family(platform_parents_data, platform_name)
+
+                    platform = Platform(None, rawg_platform_id, platform_name, rawg_platform_family)
+                    platforms.append(platform)
+
+            insert_platform_info(connection, internal_game_id, platforms)
+
         # Check if there's a 'next' page
         if "next" not in data or not data["next"]:
             break
 
         time.sleep(0.5)
 
+
+def find_rawg_platform_family(platform_data, platform_name):
+    for item in platform_data:
+        if 'platforms' in item and isinstance(item['platforms'], list):
+            for platform in item['platforms']:
+                if platform.get('name') == platform_name:
+                    platform_family = PlatformFamily(None, item.get('id'), item.get('name'))
+                    return platform_family
+    return None
 
 def insert_fake_games(connection):
     game_name = 'The One True Multi-platform game'
@@ -314,7 +352,7 @@ def insert_fake_games(connection):
     # Grab every platform
     select_query = "SELECT platform_id FROM platform;"
     cursor.execute(select_query)
-    platform_ids = cursor.fetchall()  # This will retrieve a list of tuples like [(1,), (2,), ...]
+    platform_ids = cursor.fetchall()
 
     insert_query = "INSERT INTO game_platform (game_id, platform_id) VALUES (%s, %s);"
 
@@ -375,17 +413,14 @@ def insert_genre_info(connection, internal_game_id, genres):
 def insert_platform_info(connection, internal_game_id, platforms):
     cursor = connection.cursor()
 
-    platform_mapping_file = 'generated_json/platform_mapping.json'
-
-    with open(platform_mapping_file, 'r') as file:
-        platform_mapping = json.load(file)
-
     for platform in platforms:
-        internal_platform_id = -1
+        internal_platform_id = None
         igdb_platform_id = platform.igdb_platform_id
         rawg_platform_id = platform.rawg_platform_id
         platform_name = platform.name
         platform_family = platform.platform_family
+
+        platform_family_internal_id = insert_platform_family_info(connection, platform_family)
 
         platform_mapping_for_platform = platform_mapping.get(platform_name)
 
@@ -394,13 +429,13 @@ def insert_platform_info(connection, internal_game_id, platforms):
             rawg_platform_id = rawg_platform_id or platform_mapping_for_platform.get('RAWG_ID')
 
         try:
-            insert_query = "INSERT IGNORE INTO platform (igdb_platform_id, rawg_platform_id, name) VALUES (%s, %s, %s);"
-            cursor.execute(insert_query, (igdb_platform_id, rawg_platform_id, platform_name))
+            insert_query = "INSERT IGNORE INTO platform (platform_family_id, igdb_platform_id, rawg_platform_id, name) VALUES (%s, %s, %s, %s);"
+            cursor.execute(insert_query, (platform_family_internal_id, igdb_platform_id, rawg_platform_id, platform_name))
             internal_platform_id = cursor.lastrowid
         except mysql.connector.Error as err:
             if err.errno == 1062:
-                select_query = "SELECT platform_id FROM platform WHERE igdb_platform_id = %s;"
-                cursor.execute(select_query, (igdb_platform_id,))
+                select_query = "SELECT platform_id FROM platform WHERE igdb_platform_id = %s OR rawg_platform_id = %s;"
+                cursor.execute(select_query, (igdb_platform_id, rawg_platform_id))
                 internal_platform_id = cursor.fetchone()[0]
 
                 update_query = """
@@ -412,28 +447,49 @@ def insert_platform_info(connection, internal_game_id, platforms):
             else:
                 raise
 
-        if platform_family:
-            igdb_platform_family_id = platform_family.igdb_platform_family_id
-            rawg_platform_family_id = platform_family.rawg_platform_family_id
-            platform_family_name = platform_family.name
-
-            try:
-                insert_query = "INSERT IGNORE INTO platform_family (igdb_platform_family_id, rawg_platform_family_id, name) VALUES (%s, %s, %s);"
-                cursor.execute(insert_query, (igdb_platform_family_id, rawg_platform_family_id, platform_family_name))
-                internal_platform_family_id = cursor.lastrowid
-
-                insert_query = "INSERT INTO platform_platform_family (platform_family_id, platform_id) VALUES (%s, %s);"
-                cursor.execute(insert_query, (internal_platform_family_id, internal_platform_id))
-            except mysql.connector.Error as err:
-                if err.errno == 1062:
-                    pass
-                else:
-                    raise
-
         insert_query = "INSERT INTO game_platform (game_id, platform_id) VALUES (%s, %s);"
         cursor.execute(insert_query, (internal_game_id, internal_platform_id))
 
     connection.commit()
+
+
+def insert_platform_family_info(connection, platform_family):
+    cursor = connection.cursor()
+
+    internal_platform_family_id = None
+
+    if platform_family:
+        igdb_platform_family_id = platform_family.igdb_platform_family_id
+        rawg_platform_family_id = platform_family.rawg_platform_family_id
+
+        platform_family_name = platform_family.name
+
+        platform_family_mapping_pair = platform_family_mapping.get(platform_family_name)
+
+        if platform_family_mapping_pair:
+            igdb_platform_family_id = platform_family_mapping_pair.get('IGDB_ID', igdb_platform_family_id)
+            rawg_platform_family_id = platform_family_mapping_pair.get('RAWG_ID', rawg_platform_family_id)
+
+        try:
+            insert_query = "INSERT IGNORE INTO platform_family (igdb_platform_family_id, rawg_platform_family_id, name) VALUES (%s, %s, %s);"
+            cursor.execute(insert_query, (igdb_platform_family_id, rawg_platform_family_id, platform_family_name))
+            internal_platform_family_id = cursor.lastrowid
+        except mysql.connector.Error as err:
+            if err.errno == 1062:
+                select_query = "SELECT platform_family_id FROM platform_family WHERE igdb_platform_family_id = %s OR rawg_platform_family_id = %s;"
+                cursor.execute(select_query, (igdb_platform_family_id, rawg_platform_family_id))
+                internal_platform_family_id = cursor.fetchone()[0]
+
+                update_query = """
+                UPDATE platform_family
+                SET igdb_platform_family_id = %s, rawg_platform_family_id = %s
+                WHERE platform_family_id = %s;
+                """
+                cursor.execute(update_query, (igdb_platform_family_id, rawg_platform_family_id, internal_platform_family_id))
+            else:
+                raise
+
+    return internal_platform_family_id
 
 
 def find_rawg_game_id(game_name, release_date):
