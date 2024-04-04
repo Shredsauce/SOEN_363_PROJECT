@@ -4,4 +4,4 @@ class Platform:
         self.rawg_platform_id = rawg_platform_id
         self.name = name
         self.platform_family = platform_family
-        self.internal_genre_id = -1
+        self.internal_platform_id = None

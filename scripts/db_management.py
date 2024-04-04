@@ -31,6 +31,14 @@ platform_family_mapping_file = 'generated_json/platform_family_mapping.json'
 with open(platform_family_mapping_file, 'r') as file:
     platform_family_mapping = json.load(file)
 
+all_platforms_with_logos_igdb_file = 'generated_json/all_platforms_with_logos_igdb.json'
+with open(all_platforms_with_logos_igdb_file, 'r') as file:
+    all_platforms_with_logos_igdb = json.load(file)
+
+all_platform_logos_igdb_file = 'generated_json/all_platform_logos_igdb.json'
+with open(all_platform_logos_igdb_file, 'r') as file:
+    all_platform_logos_igdb = json.load(file)
+
 
 def main():
     config = configparser.ConfigParser()
@@ -142,6 +150,7 @@ def populate_database(connection):
     insert_rawg_games(connection)
     insert_fake_games(connection)
 
+
 def insert_igdb_games(connection):
     num_pages_to_process = int(settings.get('IGDB_SETTINGS', 'num_pages_to_process'))
     limit_num_games = int(settings.get('IGDB_SETTINGS', 'limit_num_games'))
@@ -220,7 +229,6 @@ def insert_igdb_games(connection):
         time.sleep(0.5)
 
 
-# TODO: Need to insert platform info (mapped with IGDB)
 def insert_rawg_games(connection):
     platform_parents_data_file = 'generated_json/platform_parents_data_rawg.json'
 
@@ -414,7 +422,6 @@ def insert_platform_info(connection, internal_game_id, platforms):
     cursor = connection.cursor()
 
     for platform in platforms:
-        internal_platform_id = None
         igdb_platform_id = platform.igdb_platform_id
         rawg_platform_id = platform.rawg_platform_id
         platform_name = platform.name
@@ -422,35 +429,64 @@ def insert_platform_info(connection, internal_game_id, platforms):
 
         platform_family_internal_id = insert_platform_family_info(connection, platform_family)
 
-        platform_mapping_for_platform = platform_mapping.get(platform_name)
+        platform_mapping_pair = platform_mapping.get(platform_name)
 
-        if platform_mapping_for_platform:
-            igdb_platform_id = igdb_platform_id or platform_mapping_for_platform.get('IGDB_ID')
-            rawg_platform_id = rawg_platform_id or platform_mapping_for_platform.get('RAWG_ID')
+        if platform_mapping_pair:
+            igdb_platform_id = igdb_platform_id or platform_mapping_pair.get('IGDB_ID')
+            rawg_platform_id = rawg_platform_id or platform_mapping_pair.get('RAWG_ID')
 
         try:
             insert_query = "INSERT IGNORE INTO platform (platform_family_id, igdb_platform_id, rawg_platform_id, name) VALUES (%s, %s, %s, %s);"
             cursor.execute(insert_query, (platform_family_internal_id, igdb_platform_id, rawg_platform_id, platform_name))
-            internal_platform_id = cursor.lastrowid
+            platform.internal_platform_id = cursor.lastrowid
         except mysql.connector.Error as err:
             if err.errno == 1062:
                 select_query = "SELECT platform_id FROM platform WHERE igdb_platform_id = %s OR rawg_platform_id = %s;"
                 cursor.execute(select_query, (igdb_platform_id, rawg_platform_id))
-                internal_platform_id = cursor.fetchone()[0]
+                platform.internal_platform_id = cursor.fetchone()[0]
 
                 update_query = """
                 UPDATE platform
                 SET igdb_platform_id = %s, rawg_platform_id = %s
                 WHERE platform_id = %s;
                 """
-                cursor.execute(update_query, (igdb_platform_id, rawg_platform_id, internal_platform_id))
+                cursor.execute(update_query, (igdb_platform_id, rawg_platform_id, platform.internal_platform_id))
             else:
                 raise
 
         insert_query = "INSERT INTO game_platform (game_id, platform_id) VALUES (%s, %s);"
-        cursor.execute(insert_query, (internal_game_id, internal_platform_id))
+        cursor.execute(insert_query, (internal_game_id, platform.internal_platform_id))
+
+    insert_platform_logo(connection, platform)
 
     connection.commit()
+
+
+def insert_platform_logo(connection, platform):
+    cursor = connection.cursor()
+
+    platform_name = platform.name
+    platform_logo = next((item for item in all_platforms_with_logos_igdb if item['name'] == platform_name), None)
+
+    if platform_logo:
+        platform_logo_id = platform_logo.get('platform_logo')
+        logo_entry = next((item for item in all_platform_logos_igdb if item['id'] == platform_logo_id), None)
+
+        if logo_entry:
+            image_url = logo_entry['url']
+            height = logo_entry['height']
+            width = logo_entry['width']
+            platform_id = platform.internal_platform_id
+            platform_logo_id = logo_entry['id']  # Use IGDB's platform logo id
+
+            try:
+                insert_query = "INSERT INTO platform_logo (platform_logo_id, image_url, height, width, platform_id) VALUES (%s, %s, %s, %s, %s);"
+                cursor.execute(insert_query, (platform_logo_id, image_url, height, width, platform_id))
+            except mysql.connector.Error as err:
+                if err.errno == 1062:  # Platform logo already inserted
+                    pass
+                else:
+                    raise
 
 
 def insert_platform_family_info(connection, platform_family):

@@ -47,11 +47,11 @@ CREATE TABLE game_platform (
 );
 
 CREATE TABLE platform_logo (
-    platform_logo_id INT, 
+    platform_logo_id INT,
     image_url TEXT,
     height int,
     width int,
     platform_id INT,
     PRIMARY KEY (platform_logo_id, platform_id)
-    );
+);
 
