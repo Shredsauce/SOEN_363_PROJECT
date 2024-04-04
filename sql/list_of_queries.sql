@@ -186,7 +186,7 @@ Where game_id NOT IN (SELECT game_id FROM ( (SELECT game_id, platform_id FROM (s
 CROSS JOIN
      (SELECT distinct game_id FROM game_platform) as UniqueGames)
 EXCEPT
-(SELECT game_id, platform_id FROM game_platform))
+(SELECT game_id, platform_id FROM game_platform)) AS ExceptResult
 );
 -- Division using a correlated nested query using NOT EXISTS and EXCEPT (what game is on all platforms)
 SELECT * FROM game_platform AS gp
