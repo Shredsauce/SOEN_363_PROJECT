@@ -132,7 +132,7 @@ def populate_database(connection):
     use_table(connection)
     insert_igdb_games(connection)
     insert_rawg_games(connection)
-
+    insert_fake_games(connection)
 
 def insert_igdb_games(connection):
     num_pages_to_process = int(settings.get('IGDB_SETTINGS', 'num_pages_to_process'))
@@ -212,6 +212,7 @@ def insert_igdb_games(connection):
         time.sleep(0.5)
 
 
+# TODO: Need to insert platform info (mapped with IGDB)
 def insert_rawg_games(connection):
     cursor = connection.cursor()
 
@@ -227,7 +228,7 @@ def insert_rawg_games(connection):
     }
 
     for page in range(start_page, num_pages_to_process+1):
-        print(f"Fetching RAWG page {page}...")
+        print(f"Fetching RAWG page {page}")
         params["page"] = page
         response = requests.get(base_url, params=params)
 
@@ -289,6 +290,40 @@ def insert_rawg_games(connection):
         time.sleep(0.5)
 
 
+def insert_fake_games(connection):
+    game_name = 'The One True Multi-platform game'
+    summary = 'Just the craziest game available on every platform EVER.'
+    url = 'https://shredsauce.com'
+    release_date = datetime(2012, 8, 7)
+    rawg_id = 999998
+    igdb_id = 999999
+
+    game_obj = Game(game_name, summary, url, release_date, igdb_id, rawg_id)
+
+    internal_game_id = insert_game_to_db(connection, game_obj)
+
+    igdb_genres = [
+        {'id': 14, 'name': 'Sport'}
+    ]
+
+    genres = [Genre(igdb_genre['id'], None, igdb_genre['name']) for igdb_genre in igdb_genres] if igdb_genres else []
+    insert_genre_info(connection, internal_game_id, genres)
+
+    cursor = connection.cursor()
+
+    # Grab every platform
+    select_query = "SELECT platform_id FROM platform;"
+    cursor.execute(select_query)
+    platform_ids = cursor.fetchall()  # This will retrieve a list of tuples like [(1,), (2,), ...]
+
+    insert_query = "INSERT INTO game_platform (game_id, platform_id) VALUES (%s, %s);"
+
+    for (platform_id,) in platform_ids:
+        cursor.execute(insert_query, (internal_game_id, platform_id))
+
+    connection.commit()
+
+
 def insert_game_to_db(connection, game_obj):
     cursor = connection.cursor()
 
@@ -313,7 +348,6 @@ def insert_genre_info(connection, internal_game_id, genres):
         if genre_mapping_for_genre:
             genre.igdb_genre_id = genre.igdb_genre_id or genre_mapping_for_genre.get('IGDB_ID')
             genre.rawg_genre_id = genre.rawg_genre_id or genre_mapping_for_genre.get('RAWG_ID')
-
 
         try:
             insert_query = "INSERT IGNORE INTO genre (igdb_genre_id, rawg_genre_id, name) VALUES (%s, %s, %s);"
