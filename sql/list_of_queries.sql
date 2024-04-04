@@ -54,32 +54,39 @@ FROM game_genre GG
 Group by game_id
 Having genreCOUNT >=2;
 
--- Inner Join
-Select G.game_id, G.name, G.release_date, Ge.name
+-- Left Join. List all games' name and id as well as their genre id and names.
+-- Games without a genre ID and name will still be listed with null as values 
+Select G.game_id, G.name, Ge.genre_id, Ge.name
 From game G 
-Join game_genre GG ON G.game_id=GG.game_id
-Join genre Ge on GG.genre_id=Ge.genre_id;
+Left join game_genre GG ON G.game_id=GG.game_id
+Left join genre Ge on GG.genre_id=Ge.genre_id
+order by G.game_id;
 
--- Left Join
-Select *
-From game G
-LEFT JOIN game_genre
-on G.game_id = game_genre.game_id
-ORDER BY G.game_id;
-
--- Right Join
-Select G.game_id, Ge.name
+-- Right Join. List all the genre id and names as well as their games id and names
+-- Genre without games will still be included with null as values
+Select G.game_id, G.name, Ge.genre_id, Ge.name
 From game G 
 Right join game_genre GG ON G.game_id=GG.game_id
-Right join genre Ge on GG.genre_id=Ge.genre_id;
+Right join genre Ge on GG.genre_id=Ge.genre_id
+order by Ge.genre_id;
+
+-- Inner Join. List all games id and names as well as their genre id and names
+-- This will only return games with a genre
+Select G.game_id, G.name, Ge.genre_id, Ge.name
+From game G 
+join game_genre GG ON G.game_id=GG.game_id
+join genre Ge on GG.genre_id=Ge.genre_id
+order by G.game_id;
 
 -- Full Join (MySQL doeesn't support full join)
-(Select G.game_id, G.name, G.summary, Ge.genre_id, Ge.name
+-- List all games' name and id as well as their genre id and names
+-- This will return all records from game and genre table
+(Select G.game_id, G.name, Ge.genre_id, Ge.name
 From game G 
 Left join game_genre GG ON G.game_id=GG.game_id
 Left join genre Ge on GG.genre_id=Ge.genre_id)
-Union all
-(Select G.game_id, G.name, G.summary, Ge.genre_id, Ge.name
+Union
+(Select G.game_id, G.name, Ge.genre_id, Ge.name
 From game G 
 Right join game_genre GG ON G.game_id=GG.game_id
 Right join genre Ge on GG.genre_id=Ge.genre_id);
