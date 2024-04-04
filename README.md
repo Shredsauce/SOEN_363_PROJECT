@@ -32,6 +32,9 @@ Our main challenge was mapping datasets from IGDB and Rawg for integration into 
 
 Our ERD outlines the relationships between Game, Platform, and Genre entities, indicating many-to-many relationships and total or partial participation. It also details the ISA relationship between Platform and Platform Family entities, and the one-to-one relationship between Platform and Platform Logo entities.
 
+![phase_1](https://github.com/Shredsauce/SOEN_363_PROJECT/assets/78319780/d6b13496-efa2-4042-971e-930ace0db626)
+
+
 ## Database Design
 
 Our MySQL schema consists of seven tables: `game`, `genre`, `platform`, `platform_family`, `platform_logo`, `game_platform`, and `game_genre`. We created unique primary keys for each table, independent of external API IDs. The `game_platform` and `game_genre` tables facilitate the relationships between games and platforms, and games and genres, respectively.
