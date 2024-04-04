@@ -48,26 +48,11 @@ Join platform P on P.platform_id=GP.platform_id;
 SELECT * 
 from genre;
 
---List all games with at least 2 genres
+-- List all games with at least 2 genres
 SELECT game_id, count(GG.genre_id) as genreCOUNT
 FROM game_genre GG
 Group by game_id
 Having genreCOUNT >=2;
-
---Trigger to check if there are games associated to a platform before deleting it
-CREATE Trigger Check_Games_Associated
-BEFORE DELETE ON platform
-FOR EACH row
-BEGIN
-    DECLARE game_count INT
-    SELECT COUNT(*) into game_count
-    FROM game_platform
-    where platform_id=OLD.platform_id
-if game_count >0 THEN
-    SIGNAL SQLSTATE '45000'
-    SET MESSAGE = "Cannot delete platform as there are releases associated to it."
-    END IF;
-END;
 
 -- Inner Join
 Select G.game_id, G.name, G.release_date, Ge.name
@@ -80,7 +65,7 @@ Select *
 From game G
 LEFT JOIN game_genre
 on G.game_id = game_genre.game_id
-ORDER BY G.game_id	
+ORDER BY G.game_id;
 
 -- Right Join
 Select G.game_id, Ge.name
@@ -154,7 +139,7 @@ From game G, game_platform GP, platform P
 Where G.game_id=GP.game_id and P.platform_id=GP.platform_id and P.name='iOS');
 
 -- Union without SET. List all the game names that run on Xbox One or on iOS
-Select G.name as xboxOneOrIOS
+Select DISTINCT G.name as xboxOneOrIOS
 From game G, game_platform GP, platform P
 Where G.game_id=GP.game_id and P.platform_id=GP.platform_id and (P.name='Xbox One' or P.name='iOS');
 
@@ -180,7 +165,7 @@ Where G.game_id=GP.game_id
 and GP.platform_id=P.platform_id
 and P.name = 'iOS');
 
--- View with hardcoded? 
+-- View with hardcoded value
 Drop view if exists ios_platform;
 Create View ios_platform as
 (select * from platform where platform_id=1);
