@@ -4,8 +4,7 @@ USE soen_project_phase_1;
 SELECT * FROM soen_project_phase_1.game
 JOIN game_platform ON game_platform.game_id = game.game_id
 JOIN platform ON platform.platform_id = game_platform.platform_id
-LEFT JOIN platform_platform_family ON platform.platform_id = platform_platform_family.platform_id
-LEFT JOIN platform_family ON platform_family.platform_family_id = platform_platform_family.platform_family_id;
+LEFT JOIN platform_family ON platform.platform_family_id = platform_family.platform_family_id;
 
 -- List all games
 Select *
@@ -203,9 +202,8 @@ WHERE NOT EXISTS (
 
 -- Overlap. List the platforms that belong to more than one platform family.
 Select P.name as moreThanOnePlatformFamily
-From platform P, platform_family PF, platform_platform_family PPF
-Where P.platform_id=PPF.platform_id
-and PF.platform_family_id=PPF.platform_family_id
+From platform P, platform_family PF
+Where P.platform_family_id=PF.platform_family_id
 Group by moreThanOnePlatformFamily
 Having count(PF.platform_family_id) > 1;
 
@@ -214,5 +212,5 @@ Select P.name as noFamily
 From platform P
 Where NOT Exists(
 Select *
-From platform_platform_family PPF
-Where P.platform_id=PPF.platform_id);
+From platform_family PF
+Where P.platform_family_id=PF.platform_family_id);
