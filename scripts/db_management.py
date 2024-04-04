@@ -299,11 +299,22 @@ def insert_game_to_db(connection, game_obj):
     return cursor.lastrowid
 
 
-# TODO: Use future 'genre_mapping.json' file to avoid duplicate genre entries coming from both IGDB and Rawg
 def insert_genre_info(connection, internal_game_id, genres):
     cursor = connection.cursor()
 
+    genre_mapping_file = 'generated_json/genre_mapping.json'
+
+    with open(genre_mapping_file) as file:
+        genre_mapping = json.load(file)
+
     for genre in genres:
+        genre_mapping_for_genre = genre_mapping.get(genre.name)
+
+        if genre_mapping_for_genre:
+            genre.igdb_genre_id = genre.igdb_genre_id or genre_mapping_for_genre.get('IGDB_ID')
+            genre.rawg_genre_id = genre.rawg_genre_id or genre_mapping_for_genre.get('RAWG_ID')
+
+
         try:
             insert_query = "INSERT IGNORE INTO genre (igdb_genre_id, rawg_genre_id, name) VALUES (%s, %s, %s);"
             cursor.execute(insert_query, (genre.igdb_genre_id, genre.rawg_genre_id, genre.name))
