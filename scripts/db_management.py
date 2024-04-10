@@ -11,11 +11,11 @@ from Game import Game
 from Genre import Genre
 from Platform import Platform
 from PlatformFamily import PlatformFamily
-
+from db_connection import create_connection
+from db_connection import close_connection
 
 os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-config_path = 'config.ini'
 create_tables_file = 'sql/create_tables.sql'
 check_games_associated_trigger_file = 'sql/check_games_associated_trigger.sql'
 db_name = 'soen_project_phase_1'
@@ -41,31 +41,21 @@ with open(all_platform_logos_igdb_file, 'r') as file:
 
 
 def main():
-    config = configparser.ConfigParser()
-    config.read(config_path)
-
-    db_config = {
-        'user': config.get('database', 'user'),
-        'password': config.get('database', 'password'),
-        'host': config.get('database', 'host'),
-        'raise_on_warnings': config.getboolean('database', 'raise_on_warnings')
-    }
-
     try:
         should_drop_existing_db = bool(strtobool(settings.get('DATABASE', 'drop_existing')))
 
         if should_drop_existing_db:
-            connection = create_connection(db_config)
+            connection = create_connection()
             drop_existing_db(connection)
             close_connection(connection)
 
-        connection = create_connection(db_config)
+        connection = create_connection()
 
         if database_exists(connection) is False:
             create_database(connection)
             create_tables(connection)
         else:
-            use_table(connection)
+            use_database(connection)
 
         populate_database(connection)
         close_connection(connection)
@@ -105,7 +95,7 @@ def create_database(connection):
 
 def create_tables(connection):
     cursor = connection.cursor()
-    use_table(connection)
+    use_database(connection)
 
     with open(create_tables_file, 'r') as file:
         sql_query = file.read()
@@ -139,13 +129,13 @@ def execute_sql_file(filename, connection):
     cursor.close()
 
 
-def use_table(connection):
+def use_database(connection):
     cursor = connection.cursor()
     cursor.execute(f"USE {db_name};")
 
 
 def populate_database(connection):
-    use_table(connection)
+    use_database(connection)
     insert_igdb_games(connection)
     insert_rawg_games(connection)
     insert_fake_games(connection)
@@ -544,16 +534,6 @@ def find_rawg_game_id(game_name, release_date):
             return -1
     else:
         return -1
-
-
-def create_connection(db_config):
-    return mysql.connector.connect(**db_config)
-
-
-def close_connection(connection):
-    cursor = connection.cursor()
-    cursor.close()
-    connection.close()
 
 
 if __name__ == "__main__":
