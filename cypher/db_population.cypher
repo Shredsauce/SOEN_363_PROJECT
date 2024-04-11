@@ -66,9 +66,6 @@ row.image_url AS image_url,
 toInteger(row.height) AS height,
 toInteger(row.width) AS width,
 toInteger(row.platform_id) AS platform_id
-MERGE (pl:Platform_Logo {platform_logo_id:platform_logo_id})
-    SET pl.platform_id = platform_id,
-	pl.image_url = image_url,
-	pl.height = height,
-	pl.width = width
-Return count(pl);
+MATCH (p:Platform { platform_id:platform_id })
+MATCH (pl:Platform_Logo { platform_logo_id:platform_logo_id })
+MERGE(p)-[:HAS_PLATFORM_LOGO]->(pl);
