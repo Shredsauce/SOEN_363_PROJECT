@@ -3,7 +3,7 @@ WITH toInteger(row.game_id) AS game_id,
 row.name AS name,
 row.summary AS summary,
 row.url AS url,
-date(row.release_date) AS release_date,
+date(left(row.release_date, 10)) AS release_date,
 toInteger(row.igdb_id) AS igdb_id,
 toInteger(row.rawg_id) AS rawg_id
 MERGE (ga:Game {game_id:game_id})
