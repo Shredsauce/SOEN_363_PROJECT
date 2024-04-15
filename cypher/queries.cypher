@@ -1,7 +1,7 @@
 //A basic search query on an attribute value. 
-//Gives the url of the game Shinobi Blade
+//Gives the url of the game Soldier Front 2
 MATCH (ga:Game)
-WHERE ga.name='Shinobi Blade'
+WHERE ga.name='Soldier Front 2'
 RETURN ga.url;
 
 //A query that provides some aggregate data
