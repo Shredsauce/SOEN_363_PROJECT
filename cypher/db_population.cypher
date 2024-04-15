@@ -61,19 +61,17 @@ MATCH (p:Platform { platform_id: toInteger(row.platform_id) })
 MERGE (ga)-[:HAS_PLATFORM]->(p);
 
 LOAD CSV WITH HEADERS FROM 'file:///platform_logo.csv' AS row
-WITH toInteger(row.platform_logo_id) AS platform_logo_id,
-row.image_url AS image_url,
-toInteger(row.height) AS height,
-toInteger(row.width) AS width,
-toInteger(row.platform_id) AS platform_id
-MERGE (pl:Platform_Logo {platform_logo_id:platform_logo_id})
-    SET pl.platform_logo_id = platform_logo_id,
-	pl.image_url = image_url,
-	pl.height = height,
-	pl.width = width,
-	pl.platform_id = platform_id
-Return count(p);
-
-MATCH (p:Platform { platform_id:platform_id })
-MATCH (pl:Platform_Logo { platform_logo_id:platform_logo_id })
-MERGE(p)-[:HAS_PLATFORM_LOGO]->(pl);
+WITH 
+    toInteger(row.platform_logo_id) AS platform_logo_id,
+    row.image_url AS image_url,
+    toInteger(row.height) AS height,
+    toInteger(row.width) AS width,
+    toInteger(row.platform_id) AS platform_id
+MERGE (pl:Platform_Logo {platform_logo_id: platform_logo_id})
+    SET pl.image_url = image_url,
+        pl.height = height,
+        pl.width = width
+WITH pl, platform_id
+MATCH (p:Platform { platform_id: platform_id })
+MERGE (p)-[:HAS_PLATFORM_LOGO]->(pl)
+RETURN count(pl);
