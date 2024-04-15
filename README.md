@@ -1,4 +1,4 @@
-# SOEN 363 Team Project Phase 1
+# SOEN 363 Team Project
 
 **Team Members:**
 - Malcolm Arcand Laliberté (26334792)
