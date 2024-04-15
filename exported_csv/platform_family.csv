@@ -1,11 +1,11 @@
-"platform_family_id","igdb_platform_family_id","rawg_platform_family_id","name"
-1,1,2,"PlayStation"
-2,5,7,"Nintendo"
-3,2,3,"Xbox"
-7,3,0,"Sega"
-10,4,6,"Linux"
-12,0,1,"PC"
-21,0,5,"Apple Macintosh"
-44,0,8,"Android"
-75,0,4,"iOS"
-102,0,14,"Web"
+platform_family_id,igdb_platform_family_id,rawg_platform_family_id,name
+1,1,2,PlayStation
+2,2,3,Xbox
+5,5,7,Nintendo
+6,3,11,Sega
+12,4,6,Linux
+279,,1,PC
+288,,5,Apple Macintosh
+311,,8,Android
+342,,4,iOS
+367,,14,Web

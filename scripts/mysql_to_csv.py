@@ -1,4 +1,4 @@
-import pandas as pd
+import csv
 import os
 from db_connection import create_connection
 from db_connection import close_connection
@@ -16,20 +16,16 @@ tables = [
     'platform_logo'
 ]
 
-
 def main():
     convert_mysql_to_csv()
-
 
 def execute_query(connection, query):
     cursor = connection.cursor()
     cursor.execute(query)
-    columns = [column[0] for column in cursor.description]
     data = cursor.fetchall()
-    df = pd.DataFrame(data, columns=columns)
+    columns = [column[0] for column in cursor.description]
     cursor.close()
-    return df
-
+    return columns, data
 
 def convert_mysql_to_csv():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,16 +39,17 @@ def convert_mysql_to_csv():
     for table_name in tables:
         os.makedirs(output_directory, exist_ok=True)
 
-        dataframe = execute_query(connection, f"SELECT * FROM {table_name}")
-
+        columns, data = execute_query(connection, f"SELECT * FROM {table_name}")
         output_path = os.path.join(output_directory, f'{table_name}.csv')
 
-        dataframe.to_csv(output_path, index=False)
+        with open(output_path, mode='w', newline='', encoding='utf-8') as file:
+            csv_writer = csv.writer(file)
+            csv_writer.writerow(columns)  # Write the headers
+            csv_writer.writerows(data)  # Write the data
 
     print(f"CSV files have been created successfully in '{output_directory}'.")
 
     close_connection(connection)
-
 
 if __name__ == "__main__":
     main()

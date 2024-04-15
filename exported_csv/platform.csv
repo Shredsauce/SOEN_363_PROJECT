@@ -1,28 +1,83 @@
-"platform_id","platform_family_id","igdb_platform_id","rawg_platform_id","name"
-1,1,46,0,"PlayStation Vita"
-2,2,130,7,"Nintendo Switch"
-3,0,39,3,"iOS"
-4,0,6,4,"PC (Microsoft Windows)"
-5,3,49,1,"Xbox One"
-6,3,169,0,"Xbox Series X|S"
-9,2,51,0,"Family Computer Disk System"
-13,7,64,0,"Sega Master System/Mark III"
-14,0,82,0,"Web browser"
-15,0,411,0,"Handheld Electronic LCD"
-17,2,5,11,"Wii"
-18,10,3,6,"Linux"
-20,0,14,0,"Mac"
-23,0,373,0,"Sinclair ZX81"
-25,1,167,187,"PlayStation 5"
-26,3,0,186,"Xbox Series S/X"
-27,1,48,18,"PlayStation 4"
-28,1,9,16,"PlayStation 3"
-29,3,12,14,"Xbox 360"
-33,21,0,5,"macOS"
-56,44,34,21,"Android"
-97,1,0,19,"PS Vita"
-103,3,11,80,"Xbox"
-114,102,0,171,"Web"
-153,2,41,10,"Wii U"
-154,2,37,8,"Nintendo 3DS"
-208,1,8,15,"PlayStation 2"
+platform_id,platform_family_id,igdb_platform_id,rawg_platform_id,name
+1,1,46,,PlayStation Vita
+2,,39,3,iOS
+3,,6,4,PC (Microsoft Windows)
+4,2,49,1,Xbox One
+5,2,169,,Xbox Series X|S
+8,5,51,,Family Computer Disk System
+12,6,64,,Sega Master System/Mark III
+14,1,48,18,PlayStation 4
+16,5,130,7,Nintendo Switch
+17,1,167,187,PlayStation 5
+18,,411,,Handheld Electronic LCD
+19,5,5,11,Wii
+20,12,3,6,Linux
+22,,14,,Mac
+25,,373,,Sinclair ZX81
+26,,16,,Amiga
+27,,63,,Atari ST/STE
+34,,52,,Arcade
+39,1,7,27,PlayStation
+41,5,37,8,Nintendo 3DS
+42,,15,,Commodore C64/128/MAX
+44,,26,,ZX Spectrum
+46,,65,25,Atari 8-bit
+47,,75,41,Apple II
+52,,68,,ColecoVision
+59,,150,,Turbografx-16/PC Engine CD
+61,5,18,,Nintendo Entertainment System
+62,5,20,9,Nintendo DS
+70,5,99,,Family Computer
+72,5,19,,Super Nintendo Entertainment System
+75,1,38,,PlayStation Portable
+89,12,34,21,Android
+94,5,41,10,Wii U
+98,1,9,16,PlayStation 3
+101,5,21,,Nintendo GameCube
+104,,59,23,Atari 2600
+107,,405,,Windows Mobile
+118,5,33,26,Game Boy
+120,,13,,DOS
+125,2,12,14,Xbox 360
+129,,82,,Web browser
+135,6,23,106,Dreamcast
+144,,27,,MSX
+147,,57,,WonderSwan
+156,5,24,24,Game Boy Advance
+161,,123,,WonderSwan Color
+176,,475,,R-Zone
+180,6,29,,Sega Mega Drive/Genesis
+185,5,159,13,Nintendo DSi
+238,6,32,,Sega Saturn
+243,,25,,Amstrad CPC
+258,5,22,43,Game Boy Color
+262,,69,,BBC Microcomputer System
+263,,151,,TRS-80 Color Computer
+264,,153,,Dragon 32/64
+270,,70,,Vectrex
+284,,114,,Amiga CD32
+333,,116,,Acorn Archimedes
+341,,163,,SteamVR
+343,,386,,Meta Quest 2
+344,1,390,,PlayStation VR2
+351,1,8,15,PlayStation 2
+354,,309,,Evercade
+374,,377,,Plug & Play
+412,,479,,Terebikko / See 'n Say Video Phone
+419,,121,,Sharp X68000
+456,,154,,Amstrad PCW
+463,,379,,Game.com
+472,,474,,Gizmondo
+486,6,35,,Sega Game Gear
+498,,132,,Amazon Fire TV
+513,,308,,Playdia
+539,,55,,Legacy Mobile Device
+642,6,84,,SG-1000
+660,5,58,,Super Famicom
+684,,71,,Commodore VIC-20
+685,,129,,Texas Instruments TI-99
+730,2,,186,Xbox Series S/X
+737,288,,5,macOS
+801,1,,19,PS Vita
+807,2,11,80,Xbox
+816,367,,171,Web
