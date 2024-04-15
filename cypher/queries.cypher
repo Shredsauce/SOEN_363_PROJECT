@@ -21,3 +21,22 @@ LIMIT 3;
 MATCH (ga:Game)-[:HAS_PLATFORM]->(p:Platform)
 WITH DISTINCT(p.platform_id) as platform_id, COUNT(ga) as numberOfGames
 RETURN platform_id, numberOfGames;
+
+
+// Create Indices on the previous queries to test the difference in search times.
+
+CREATE INDEX FOR (ga:Game) ON (ga.name);
+
+CREATE INDEX FOR (ge:Genre) ON (ge.genre_id);
+
+CREATE INDEX FOR (ga:Game) ON (ga.game_id);
+
+CREATE INDEX FOR (p:Platform) ON (p.platform_id);
+
+
+// Full text Index created on Game.name and Game.summary
+CALL db.index.fulltext.createNodeIndex("gamesFullText", ["Game"], ["name", "summary"]);
+
+// Query the Full text Index
+CALL db.index.fulltext.queryNodes("gamesFullText", "ninja") YIELD node, score
+RETURN node.name, node.summary, score;
