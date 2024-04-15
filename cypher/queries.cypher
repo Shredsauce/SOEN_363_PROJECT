@@ -35,7 +35,10 @@ CREATE INDEX FOR (p:Platform) ON (p.platform_id);
 
 
 // Full text Index created on Game.name and Game.summary
-CALL db.index.fulltext.createNodeIndex("gamesFullText", ["Game"], ["name", "summary"]);
+CREATE FULLTEXT INDEX gamesFullText FOR (g:Game) ON EACH [
+    g.name,
+    g.summary
+];
 
 // Query the Full text Index
 CALL db.index.fulltext.queryNodes("gamesFullText", "ninja") YIELD node, score
