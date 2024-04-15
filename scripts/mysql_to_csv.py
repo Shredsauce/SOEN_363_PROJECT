@@ -18,8 +18,10 @@ tables = [
     'platform_logo'
 ]
 
+
 def main():
     convert_mysql_to_csv()
+
 
 def execute_query(connection, query):
     cursor = connection.cursor()
@@ -28,6 +30,7 @@ def execute_query(connection, query):
     columns = [column[0] for column in cursor.description]
     cursor.close()
     return columns, data
+
 
 def convert_mysql_to_csv():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
