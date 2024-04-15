@@ -2,6 +2,8 @@ import csv
 import os
 from db_connection import create_connection
 from db_connection import close_connection
+from db_connection import neo4j_import_folder
+
 
 output_directory = 'exported_csv'
 os.makedirs(output_directory, exist_ok=True)
@@ -35,6 +37,10 @@ def convert_mysql_to_csv():
 
     cursor = connection.cursor()
     cursor.execute("USE soen_project_phase_1;")
+
+    import_folder = neo4j_import_folder()
+    if neo4j_import_folder:
+        output_directory = import_folder
 
     for table_name in tables:
         os.makedirs(output_directory, exist_ok=True)
